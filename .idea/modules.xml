@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app-service-api/appservice.iml" filepath="$PROJECT_DIR$/app-service-api/appservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cms-service-api/cms-service-api.iml" filepath="$PROJECT_DIR$/cms-service-api/cms-service-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-model/common-model.iml" filepath="$PROJECT_DIR$/common-model/common-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common-util/common-util.iml" filepath="$PROJECT_DIR$/common-util/common-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/electronservice.iml" filepath="$PROJECT_DIR$/electronservice.iml" />
+    </modules>
+  </component>
+</project>
