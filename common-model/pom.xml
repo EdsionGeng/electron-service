@@ -11,5 +11,10 @@
 
     <artifactId>common-model</artifactId>
 
-
+<dependencies>
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+    </dependency>
+</dependencies>
 </project>
