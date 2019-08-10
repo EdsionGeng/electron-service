@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/app-service-api/app-service.iml" filepath="$PROJECT_DIR$/app-service-api/app-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/app-service-api/appservice.iml" filepath="$PROJECT_DIR$/app-service-api/appservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/cms-service-api/cms-service-api.iml" filepath="$PROJECT_DIR$/cms-service-api/cms-service-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/common-model/common-model.iml" filepath="$PROJECT_DIR$/common-model/common-model.iml" />
