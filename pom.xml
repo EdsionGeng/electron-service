@@ -18,8 +18,8 @@
 
 
     <properties>
-        <springboot.version>2.1.3.RELEASE</springboot.version>
-        <spring-boot-admin-starter-client.version>2.1.3</spring-boot-admin-starter-client.version>
+        <springboot.version>2.1.0.RELEASE</springboot.version>
+        <!--<spring-boot-admin-starter-client.version>2.1.3</spring-boot-admin-starter-client.version>-->
         <!--        <com.alibab.dubbo.version>2.6.5</com.alibab.dubbo.version>-->
         <!--<dubbo.version>2.7.1</dubbo.version>-->
         <mysql-connector-java.version>5.1.46</mysql-connector-java.version>
@@ -40,7 +40,7 @@
         <!--<rocketmq-spring-boot-starter.version>2.0.1</rocketmq-spring-boot-starter.version>
         <sentinel.version>0.9.0.RELEASE</sentinel.version>-->
 
-        <maven-compiler-plugin.version>3.6</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
         <!--<maven-site-plugin.version>3.6</maven-site-plugin.version>-->
         <org.projectlombok.version>1.16.14</org.projectlombok.version>
 
@@ -84,7 +84,11 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
