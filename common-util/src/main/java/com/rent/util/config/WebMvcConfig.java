@@ -1,4 +1,4 @@
-package com.rent.util.config;//package com.rent.util.config;
+package com.rent.util.config;
 //
 //
 //import com.shaoman.filter.AesFilter;

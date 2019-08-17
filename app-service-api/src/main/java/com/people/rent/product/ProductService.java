@@ -1,4 +1,4 @@
 package com.people.rent.product;
 
-public class PayService {
+public class ProductService {
 }

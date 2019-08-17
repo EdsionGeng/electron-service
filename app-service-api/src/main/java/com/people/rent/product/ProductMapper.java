@@ -1,4 +1,4 @@
 package com.people.rent.product;
 
-public class PayMapper {
+public class ProductMapper {
 }

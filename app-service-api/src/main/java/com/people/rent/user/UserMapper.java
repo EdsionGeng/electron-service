@@ -1,4 +1,14 @@
 package com.people.rent.user;
 
-public class UserMapper {
+
+import com.rent.model.po.User;
+import org.apache.ibatis.annotations.Param;
+
+public interface UserMapper {
+
+
+    User queryUserByAliId(@Param("id")String alipayUserId);
+
+
+    void registUser(User user);
 }
