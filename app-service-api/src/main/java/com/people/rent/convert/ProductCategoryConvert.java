@@ -1,39 +1,25 @@
 package com.people.rent.convert;
 
 import com.rent.model.bo.ProductCategoryBO;
-import com.rent.model.vo.UsersProductCategoryVO;
-import org.mapstruct.Mapper;
+import com.rent.model.dataobject.ProductCategoryDO;
+
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 public interface ProductCategoryConvert {
+    ProductCategoryConvert INSTANCE = Mappers.getMapper(ProductCategoryConvert.class);
+    @Mappings({})
+    ProductCategoryBO convertToBO(ProductCategoryDO category);
 
-    @Mapper
-    interface Users {
+    @Mappings({})
+    List<ProductCategoryBO> convertToBO(List<ProductCategoryDO> categoryList);
 
-        Users INSTANCE = Mappers.getMapper(Users.class);
-
-        @Mappings({})
-        UsersProductCategoryVO convertToVO(ProductCategoryBO category);
-
-        @Mappings({})
-        List<UsersProductCategoryVO> convertToVO(List<ProductCategoryBO> categoryList);
-
-    }
-
-    @Mapper
-    interface Admins {
-
-        Admins INSTANCE = Mappers.getMapper(Admins.class);
-
-//        @Mappings({})
-//        AdminsProductCategoryTreeNodeVO convert(ProductCategoryBO category);
+//    @Mappings({})
+//    ProductCategoryDO convert(ProductCategoryAddDTO productCategoryAddDTO);
 //
-//        @Mappings({})
-//        AdminsProductCategoryVO convert2(ProductCategoryBO result);
-
-    }
+//    @Mappings({})
+//    ProductCategoryDO convert(ProductCategoryUpdateDTO productCategoryUpdateDTO);
 
 }

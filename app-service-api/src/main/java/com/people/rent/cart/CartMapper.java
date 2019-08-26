@@ -2,12 +2,12 @@ package com.people.rent.cart;
 
 import com.rent.model.dataobject.CartItemDO;
 import org.apache.ibatis.annotations.Param;
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
 
-@Mapper
+@Repository
 public interface CartMapper {
     CartItemDO selectById(@Param("id") Integer id);
 
