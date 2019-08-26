@@ -1,4 +1,4 @@
-package com.rent.model.constant.constant;
+package com.rent.model.constant;
 
 /**
  * Mall 全局枚举

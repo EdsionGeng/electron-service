@@ -1,7 +1,13 @@
 package com.people.rent.search;
 
 import com.rent.model.CommonResult;
+import com.rent.model.SortingField;
+import com.rent.model.bo.ProductConditionBO;
+import com.rent.model.bo.ProductPageBO;
+import com.rent.model.dto.ProductConditionDTO;
 import com.rent.model.dto.ProductSearchPageDTO;
+import com.rent.util.utils.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +18,7 @@ import java.util.Collections;
 
 public class SearchController {
 
-
+    @Autowired
     private SearchService searchService;
 
     @GetMapping("/page") // TODO 芋艿，后面把 BO 改成 VO
@@ -38,7 +44,7 @@ public class SearchController {
         ProductConditionDTO productConditionDTO = new ProductConditionDTO().setKeyword(keyword)
                 .setFields(Collections.singleton(ProductConditionDTO.FIELD_CATEGORY));
         // 执行搜索
-        return success(productSearchService.getSearchCondition(productConditionDTO));
+        return CommonResult.success(searchService.getSearchCondition(productConditionDTO));
     }
 
 }

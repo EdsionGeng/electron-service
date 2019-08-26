@@ -1,4 +1,4 @@
-package com.rent.model.constant.constant;
+package com.rent.model.constant;
 
 /**
  * 模块错误码区间
