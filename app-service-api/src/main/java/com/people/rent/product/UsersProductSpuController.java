@@ -5,6 +5,8 @@ import com.people.rent.convert.ProductSpuConvert;
 import com.rent.model.CommonResult;
 import com.rent.model.bo.ProductSpuPageBO;
 import com.rent.model.dto.ProductSpuPageDTO;
+import com.rent.model.vo.UsersProductSpuDetailVO;
+import com.rent.model.vo.UsersProductSpuPageVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

@@ -1,7 +1,11 @@
 package com.people.rent.promotion;
 
 
+import com.people.rent.banner.BannerService;
+import com.people.rent.convert.BannerConvert;
 import com.rent.model.CommonResult;
+import com.rent.model.bo.BannerBO;
+import com.rent.model.constant.CommonStatusEnum;
 import com.rent.model.vo.UsersBannerVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

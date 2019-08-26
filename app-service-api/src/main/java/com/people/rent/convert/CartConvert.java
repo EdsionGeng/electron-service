@@ -2,6 +2,9 @@ package com.people.rent.convert;
 
 
 import com.rent.model.bo.CalcOrderPriceBO;
+import com.rent.model.bo.CalcSkuPriceBO;
+import com.rent.model.dto.CouponCardSpuDTO;
+import com.rent.model.vo.UsersCalcSkuPriceVO;
 import com.rent.model.vo.UsersCartDetailVO;
 import com.rent.model.vo.UsersOrderConfirmCreateVO;
 import org.mapstruct.Mapper;

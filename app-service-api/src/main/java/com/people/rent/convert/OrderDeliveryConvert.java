@@ -1,7 +1,7 @@
 package com.people.rent.convert;
 
-import cn.iocoder.mall.order.api.dto.OrderDeliveryDTO;
-import cn.iocoder.mall.order.application.po.admin.OrderDeliverPO;
+import com.rent.model.dto.OrderDeliveryDTO;
+import com.rent.model.po.OrderDeliverPO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;

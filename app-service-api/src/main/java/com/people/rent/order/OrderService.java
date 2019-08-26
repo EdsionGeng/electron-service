@@ -1,8 +1,6 @@
 package com.people.rent.order;
 
 
-import io.netty.handler.codec.http.HttpUtil;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

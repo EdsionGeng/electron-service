@@ -2,6 +2,8 @@ package com.rent.model.vo;
 
 
 import com.rent.model.bo.CouponCardAvailableBO;
+import com.rent.model.bo.ProductAttrAndValuePairBO;
+import com.rent.model.bo.PromotionActivityBO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

@@ -1,6 +1,6 @@
 package com.rent.model.dataobject;
 
-import cn.iocoder.common.framework.dataobject.DeletableDO;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -31,11 +31,11 @@ public class BannerDO extends DeletableDO {
      * 排序
      */
     private Integer sort;
-    /**
-     * 状态
-     *
-     * {@link cn.iocoder.common.framework.constant.CommonStatusEnum}
-     */
+//    /**
+//     * 状态
+//     *
+//     * {@link cn.iocoder.common.framework.constant.CommonStatusEnum}
+//     */
     private Integer status;
     /**
      * 备注

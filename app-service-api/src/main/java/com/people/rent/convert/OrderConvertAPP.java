@@ -1,11 +1,14 @@
 package com.people.rent.convert;
 
-import cn.iocoder.mall.order.api.bo.CartItemBO;
-import cn.iocoder.mall.order.api.dto.*;
-import cn.iocoder.mall.order.application.po.admin.OrderItemUpdatePO;
-import cn.iocoder.mall.order.application.po.admin.OrderLogisticsPO;
-import cn.iocoder.mall.order.application.po.admin.OrderPageQueryPO;
-import cn.iocoder.mall.order.application.po.user.OrderCreatePO;
+import com.rent.model.bo.CartItemBO;
+import com.rent.model.dto.OrderCreateDTO;
+import com.rent.model.dto.OrderItemUpdateDTO;
+import com.rent.model.dto.OrderLogisticsUpdateDTO;
+import com.rent.model.dto.OrderQueryDTO;
+import com.rent.model.po.OrderCreatePO;
+import com.rent.model.po.OrderItemUpdatePO;
+import com.rent.model.po.OrderLogisticsPO;
+import com.rent.model.po.OrderPageQueryPO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;

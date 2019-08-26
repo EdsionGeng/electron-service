@@ -1,9 +1,7 @@
 package com.people.rent.convert;
 
-import cn.iocoder.mall.product.api.bo.ProductCategoryBO;
-import cn.iocoder.mall.product.application.vo.admins.AdminsProductCategoryTreeNodeVO;
-import cn.iocoder.mall.product.application.vo.admins.AdminsProductCategoryVO;
-import cn.iocoder.mall.product.application.vo.users.UsersProductCategoryVO;
+import com.rent.model.bo.ProductCategoryBO;
+import com.rent.model.vo.UsersProductCategoryVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
@@ -30,11 +28,11 @@ public interface ProductCategoryConvert {
 
         Admins INSTANCE = Mappers.getMapper(Admins.class);
 
-        @Mappings({})
-        AdminsProductCategoryTreeNodeVO convert(ProductCategoryBO category);
-
-        @Mappings({})
-        AdminsProductCategoryVO convert2(ProductCategoryBO result);
+//        @Mappings({})
+//        AdminsProductCategoryTreeNodeVO convert(ProductCategoryBO category);
+//
+//        @Mappings({})
+//        AdminsProductCategoryVO convert2(ProductCategoryBO result);
 
     }
 

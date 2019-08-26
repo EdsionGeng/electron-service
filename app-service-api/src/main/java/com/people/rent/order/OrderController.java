@@ -2,15 +2,20 @@ package com.people.rent.order;
 
 
 import com.people.rent.cart.CartService;
+import com.people.rent.convert.CartConvert;
+import com.people.rent.convert.OrderConvertAPP;
 import com.people.rent.coupon.CouponService;
 import com.people.rent.datadict.DataDictService;
 import com.rent.model.CommonResult;
 import com.rent.model.bo.*;
+import com.rent.model.constant.OrderErrorCodeEnum;
 import com.rent.model.dto.CalcOrderPriceDTO;
 import com.rent.model.dto.OrderCreateDTO;
 import com.rent.model.dto.OrderQueryDTO;
 import com.rent.model.po.OrderCreatePO;
-import io.netty.handler.codec.http.HttpUtil;
+import com.rent.model.vo.UsersOrderConfirmCreateVO;
+import com.rent.util.utils.HttpUtil;
+import com.rent.util.utils.ServiceExceptionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +55,7 @@ public class OrderController {
 
     @ApiOperation("订单分页")
     public CommonResult<OrderPageBO> getOrderPage(@Validated OrderQueryDTO orderQueryDTO) {
-        Integer userId = UserSecurityContextHolder.getContext().getUserId();
+        // Integer userId = UserSecurityContextHolder.getContext().getUserId();
         orderQueryDTO.setUserId(userId);
         return orderService.getOrderPage(orderQueryDTO);
     }
@@ -59,7 +64,7 @@ public class OrderController {
     @ApiOperation("创建订单")
     public CommonResult<OrderCreateBO> createOrder(@RequestBody @Validated OrderCreatePO orderCreatePO,
                                                    HttpServletRequest request) {
-        Integer userId = UserSecurityContextHolder.getContext().getUserId();
+        Integer userId = Integer.parseInt(request.getHeader(""));
         OrderCreateDTO orderCreateDTO = OrderConvertAPP.INSTANCE.convert(orderCreatePO);
         orderCreateDTO.setUserId(userId).setIp(HttpUtil.getIp(request));
         return orderService.createOrder(orderCreateDTO);
@@ -97,8 +102,9 @@ public class OrderController {
     @ApiOperation("确认创建订单")
     public CommonResult<UsersOrderConfirmCreateVO> getConfirmCreateOrder(@RequestParam("skuId") Integer skuId,
                                                                          @RequestParam("quantity") Integer quantity,
-                                                                         @RequestParam(value = "couponCardId", required = false) Integer couponCardId) {
-        Integer userId = UserSecurityContextHolder.getContext().getUserId();
+                                                                         @RequestParam(value = "couponCardId", required = false) Integer couponCardId,
+                                                                         HttpServletRequest request) {
+        Integer userId = Integer.parseInt(request.getHeader("oAuth"));
         // 创建 CalcOrderPriceDTO 对象，并执行价格计算
         CalcOrderPriceDTO calcOrderPriceDTO = new CalcOrderPriceDTO()
                 .setUserId(userId)

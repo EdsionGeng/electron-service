@@ -1,5 +1,6 @@
 package com.rent.model.vo;
 
+import com.rent.model.bo.ProductAttrAndValuePairBO;
 import com.rent.model.bo.PromotionActivityBO;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;

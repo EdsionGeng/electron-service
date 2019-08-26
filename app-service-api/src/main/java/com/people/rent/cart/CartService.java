@@ -1,14 +1,23 @@
 package com.people.rent.cart;
 
+import com.people.rent.product.ProductSpuService;
+import com.rent.model.bo.ProductSkuBO;
+import com.rent.model.constant.CartItemStatusEnum;
+import com.rent.model.constant.CommonStatusEnum;
+import com.rent.model.constant.OrderErrorCodeEnum;
+import com.rent.model.dataobject.CartItemDO;
+import com.rent.util.utils.ServiceExceptionUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
 @Service
-
 public class CartService {
-
-
+    @Autowired
+    private ProductSpuService productSpuService;
+    @Autowired
+    private CartMapper cartMapper;
 
 
     @SuppressWarnings("Duplicates")

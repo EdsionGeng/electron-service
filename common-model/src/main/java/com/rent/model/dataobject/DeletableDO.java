@@ -1,6 +1,6 @@
 package com.rent.model.dataobject;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
+//import com.baomidou.mybatisplus.annotation.TableLogic;
 
 /**
  * extends BaseDO 扩展 delete 操作
@@ -13,7 +13,7 @@ public class DeletableDO extends BaseDO {
     /**
      * 是否删除
      */
-    @TableLogic
+    //@TableLogic
     private Integer deleted;
 
     @Override

@@ -22,7 +22,7 @@ public class PromotionActivityBO implements Serializable {
     /**
      * 活动类型
      *
-     * 参见 {@link cn.iocoder.mall.promotion.api.constant.PromotionActivityTypeEnum} 枚举
+     *
      */
     private Integer activityType;
     /**

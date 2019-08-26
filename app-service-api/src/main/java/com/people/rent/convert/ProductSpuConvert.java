@@ -2,7 +2,9 @@ package com.people.rent.convert;
 
 
 import com.rent.model.bo.ProductSpuBO;
+import com.rent.model.bo.ProductSpuDetailBO;
 import com.rent.model.bo.ProductSpuPageBO;
+import com.rent.model.vo.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;

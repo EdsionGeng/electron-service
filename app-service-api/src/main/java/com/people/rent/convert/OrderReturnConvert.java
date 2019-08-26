@@ -1,9 +1,9 @@
 package com.people.rent.convert;
 
-import cn.iocoder.mall.order.api.dto.OrderReturnApplyDTO;
-import cn.iocoder.mall.order.api.dto.OrderReturnQueryDTO;
-import cn.iocoder.mall.order.application.po.admin.OrderReturnQueryPO;
-import cn.iocoder.mall.order.application.po.user.OrderReturnApplyPO;
+import com.rent.model.dto.OrderReturnApplyDTO;
+import com.rent.model.dto.OrderReturnQueryDTO;
+import com.rent.model.po.OrderReturnApplyPO;
+import com.rent.model.po.OrderReturnQueryPO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;

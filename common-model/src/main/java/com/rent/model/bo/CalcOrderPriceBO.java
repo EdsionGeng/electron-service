@@ -1,7 +1,6 @@
 package com.rent.model.bo;
 
-import cn.iocoder.mall.product.api.bo.ProductSkuDetailBO;
-import cn.iocoder.mall.promotion.api.bo.PromotionActivityBO;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
