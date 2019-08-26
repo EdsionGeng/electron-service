@@ -1,4 +1,4 @@
-package com.rent.model.constant.constant;
+package com.rent.model.constant;
 
 import com.rent.model.core.IntArrayValuable;
 

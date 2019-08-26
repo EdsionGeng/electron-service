@@ -1,4 +1,4 @@
-package com.rent.model.constant.constant;
+package com.rent.model.constant;
 
 /**
  * 错误码枚举类
