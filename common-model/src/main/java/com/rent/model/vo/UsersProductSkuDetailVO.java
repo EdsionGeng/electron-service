@@ -23,7 +23,7 @@ public class UsersProductSkuDetailVO {
     private List<UsersProductAttrAndValuePairVO> attrs;
     @ApiModelProperty(value = "价格，单位：分", required = true, example = "100")
     private Integer price;
-    @ApiModelProperty(value = "库存数量", required = true, example = "100")
-    private Integer quantity;
+//    @ApiModelProperty(value = "库存数量", required = true, example = "100")
+//    private Integer quantity;
 
 }

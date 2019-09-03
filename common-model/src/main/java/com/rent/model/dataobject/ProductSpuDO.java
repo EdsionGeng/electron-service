@@ -1,29 +1,33 @@
-package com.rent.model.bo;
+package com.rent.model.dataobject;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-import java.util.List;
-
 /**
- * 商品 SPU BO
+ * 商品 SPU
+ *
+ * TODO 芋艿，后面增加商品普通参数。例如说，正面材料，背面材料，屏幕尺寸。
  */
 @Data
 @Accessors(chain = true)
-public class ProductSpuBO implements Serializable {
+public class ProductSpuDO extends DeletableDO {
 
     /**
      * SPU 编号
      */
     private Integer id;
 
-    //========== 基本信息 =========
+    // TODO 店铺编号 先不考虑，因为第一个版本，不做 B2B2C
+
+    // ========== 基本信息 =========
     /**
      * SPU 名字
      */
     private String name;
-
+    /**
+     * 卖点
+     */
+    private String sellPoint;
     /**
      * 描述
      */
@@ -39,7 +43,9 @@ public class ProductSpuBO implements Serializable {
      *
      * 建议尺寸：800*800像素，你可以拖拽图片调整顺序，最多上传15张
      */
-    private List<String> picUrls;
+    private String picUrls;
+
+    // TODO 运费信息
 
     // ========== 其他信息 =========
     /**
@@ -61,11 +67,11 @@ public class ProductSpuBO implements Serializable {
      * 目前的计算方式是，以 Sku 最小价格为准
      */
     private Integer price;
-//    /**
-//     * 库存数量
-//     *
-//     * 目前的计算方式是，以 Sku 库存累加为准
-//     */
-//    private Integer quantity;
+    /**
+     * 库存数量
+     *
+     * 目前的计算方式是，以 Sku 库存累加为准
+     */
+    private Integer quantity;
 
 }

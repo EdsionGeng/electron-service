@@ -18,8 +18,7 @@ public class UsersProductSpuVO {
     // ========== 基本信息 =========
     @ApiModelProperty(value = "SPU 名字", required = true, example = "厮大牛逼")
     private String name;
-    @ApiModelProperty(value = "卖点", required = true, example = "各种 MQ 骚操作")
-    private String sellPoint;
+
     @ApiModelProperty(value = "分类编号", required = true, example = "反正我是信了")
     private Integer cid;
     @ApiModelProperty(value = "商品主图地址的数组", required = true, example = "http://www.iocoder.cn")
@@ -32,11 +31,6 @@ public class UsersProductSpuVO {
      * 目前的计算方式是，以 Sku 最小价格为准
      */
     private Integer price;
-    /**
-     * 库存数量
-     *
-     * 目前的计算方式是，以 Sku 库存累加为准
-     */
-    private Integer quantity;
+
 
 }

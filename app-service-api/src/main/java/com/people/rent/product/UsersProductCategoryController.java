@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("users/category")
+@RequestMapping("/users/category")
 @Api("商品分类")
 public class UsersProductCategoryController {
 

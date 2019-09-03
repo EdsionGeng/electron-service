@@ -12,7 +12,7 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+//import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
  * @create 2017/8/26
  * @DESCRIPTION自动定义接口文档
  */
-@EnableSwagger2
+//@EnableSwagger2
 @Configuration
 public class Swagger2Config {
     @Bean

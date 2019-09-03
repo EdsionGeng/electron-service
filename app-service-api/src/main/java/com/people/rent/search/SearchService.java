@@ -1,27 +1,14 @@
 package com.people.rent.search;
 
-import com.people.rent.product.ProductMapper;
-import com.rent.model.CollectionUtil;
-import com.rent.model.SortingField;
-import com.rent.model.bo.ProductConditionBO;
-import com.rent.model.bo.ProductPageBO;
-import com.rent.model.dto.ProductConditionDTO;
-import com.rent.model.dto.ProductSearchPageDTO;
-import com.rent.util.utils.StringUtil;
+import com.people.rent.product.ProductSpuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class SearchService {
 
     @Autowired
-    private ProductMapper productMapper;
+    private ProductSpuMapper productMapper;
 
 
 //    public ProductPageBO getSearchPage(ProductSearchPageDTO searchPageDTO) {

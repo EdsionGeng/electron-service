@@ -18,8 +18,7 @@ public class UsersProductSpuDetailVO {
     // ========== 基本信息 =========
     @ApiModelProperty(value = "SPU 名字", required = true, example = "厮大牛逼")
     private String name;
-    @ApiModelProperty(value = "卖点", required = true, example = "各种 MQ 骚操作")
-    private String sellPoint;
+
     @ApiModelProperty(value = "描述", required = true, example = "你就说强不强")
     private String description;
     @ApiModelProperty(value = "分类编号", required = true, example = "反正我是信了")

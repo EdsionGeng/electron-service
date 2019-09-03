@@ -1,13 +1,13 @@
 package com.people.rent.cart;
 
+import com.people.rent.convert.CartConvert;
 import com.people.rent.product.ProductSpuService;
-import com.rent.model.bo.CalcOrderPriceBO;
-import com.rent.model.bo.ProductSkuBO;
-import com.rent.model.bo.PromotionActivityBO;
+import com.rent.model.bo.*;
 import com.rent.model.constant.CartItemStatusEnum;
 import com.rent.model.constant.CommonStatusEnum;
 import com.rent.model.constant.OrderErrorCodeEnum;
 import com.rent.model.dataobject.CartItemDO;
+import com.rent.model.dto.CalcOrderPriceDTO;
 import com.rent.util.utils.ServiceExceptionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,10 +43,10 @@ public class CartService {
     }
 
     private Boolean add0(Integer userId, ProductSkuBO sku, Integer quantity) {
-        // 校验库存
-        if (quantity > sku.getQuantity()) {
-            throw ServiceExceptionUtil.exception(OrderErrorCodeEnum.CARD_ITEM_SKU_NOT_FOUND.getCode());
-        }
+//        // 校验库存
+//        if (quantity > sku.getQuantity()) {
+//            throw ServiceExceptionUtil.exception(OrderErrorCodeEnum.CARD_ITEM_SKU_NOT_FOUND.getCode());
+//        }
         // 创建 CartItemDO 对象，并进行保存。
         CartItemDO item = new CartItemDO()
                 // 基础字段
@@ -118,7 +118,7 @@ public class CartService {
         return CartConvert.INSTANCE.convert(items);
     }
 
-    @Override
+
     public CalcOrderPriceBO calcOrderPrice(CalcOrderPriceDTO calcOrderPriceDTO) {
         // TODO 芋艿，补充一些表单校验。例如说，需要传入用户编号。
         // 校验商品都存在
@@ -163,7 +163,7 @@ public class CartService {
         return calcOrderPriceBO;
     }
 
-    @Override
+
     @SuppressWarnings("Duplicates")
     public CalcSkuPriceBO calcSkuPrice(Integer skuId) {
         // 查询 SKU 是否合法
@@ -173,18 +173,17 @@ public class CartService {
             throw ServiceExceptionUtil.exception(OrderErrorCodeEnum.CARD_ITEM_SKU_NOT_FOUND.getCode());
         }
         // 查询促销活动
-        List<PromotionActivityBO> activityList = promotionActivityService.getPromotionActivityListBySpuId(sku.getSpuId(),
-                Arrays.asList(PromotionActivityStatusEnum.WAIT.getValue(), PromotionActivityStatusEnum.RUN.getValue()));
-        if (activityList.isEmpty()) { // 如果无促销活动，则直接返回默认结果即可
-            return new CalcSkuPriceBO().setOriginalPrice(sku.getPrice()).setBuyPrice(sku.getPrice());
-        }
-        // 如果有促销活动，则开始做计算 TODO 芋艿，因为现在暂时只有限时折扣 + 满减送。所以写的比较简单先
-        PromotionActivityBO fullPrivilege = findPromotionActivityByType(activityList, PromotionActivityTypeEnum.FULL_PRIVILEGE);
-        PromotionActivityBO timeLimitedDiscount = findPromotionActivityByType(activityList, PromotionActivityTypeEnum.TIME_LIMITED_DISCOUNT);
-        Integer presentPrice = calcSkuPriceByTimeLimitDiscount(sku, timeLimitedDiscount);
-        // 返回结果
-        return new CalcSkuPriceBO().setFullPrivilege(fullPrivilege).setTimeLimitedDiscount(timeLimitedDiscount)
-                .setOriginalPrice(sku.getPrice()).setBuyPrice(presentPrice);
+//        List<PromotionActivityBO> activityList = promotionActivityService.getPromotionActivityListBySpuId(sku.getSpuId(),
+//                Arrays.asList(PromotionActivityStatusEnum.WAIT.getValue(), PromotionActivityStatusEnum.RUN.getValue()));
+//        if (activityList.isEmpty()) { // 如果无促销活动，则直接返回默认结果即可
+            return new CalcSkuPriceBO().setOriginalPrice(sku.getPrice()).setBuyPrice(sku.getPrice());//       }
+//        // 如果有促销活动，则开始做计算 TODO 芋艿，因为现在暂时只有限时折扣 + 满减送。所以写的比较简单先
+//        PromotionActivityBO fullPrivilege = findPromotionActivityByType(activityList, PromotionActivityTypeEnum.FULL_PRIVILEGE);
+//        PromotionActivityBO timeLimitedDiscount = findPromotionActivityByType(activityList, PromotionActivityTypeEnum.TIME_LIMITED_DISCOUNT);
+//        Integer presentPrice = calcSkuPriceByTimeLimitDiscount(sku, timeLimitedDiscount);
+//        // 返回结果
+//        return new CalcSkuPriceBO().setFullPrivilege(fullPrivilege).setTimeLimitedDiscount(timeLimitedDiscount)
+//                .setOriginalPrice(sku.getPrice()).setBuyPrice(presentPrice);
     }
 
     private List<CalcOrderPriceBO.Item> initCalcOrderPriceItems(List<ProductSkuDetailBO> skus,

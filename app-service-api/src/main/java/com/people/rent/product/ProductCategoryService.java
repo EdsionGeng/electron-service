@@ -21,4 +21,9 @@ public class ProductCategoryService {
         return ProductCategoryConvert.INSTANCE.convertToBO(categoryList);
     }
 
+
+    public ProductCategoryDO getProductCategory(Integer productCategoryId) {
+        return productCategoryMapper.selectById(productCategoryId);
+    }
+
 }

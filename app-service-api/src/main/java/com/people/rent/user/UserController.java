@@ -29,7 +29,7 @@ public class UserController {
 
 
     @ApiOperation(value = "统一登录接口", notes = "支付宝小程序唤起登录后调用", httpMethod = "POST")
-    @PostMapping("/login/{authCode}")
+    @PostMapping("/users/login/{authCode}")
     public CommonResult items(
             @ApiParam(name = "authCode",
                     value = "授权码",
