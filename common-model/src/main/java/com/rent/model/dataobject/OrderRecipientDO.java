@@ -1,18 +1,17 @@
-package com.rent.model.bo;
+package com.rent.model.dataobject;
 
-import cn.iocoder.common.framework.dataobject.BaseDO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * 订单收件人信息 order_recipient
+ * 订单收件人信息 order_recipient (配送信息)
  *
  * @author Sin
  * @time 2019-03-31 11:37
  */
 @Data
 @Accessors(chain = true)
-public class OrderRecipientBO extends BaseDO { // TODO FROM 芋艿 TO 小范，不要继承 BaseDO
+public class OrderRecipientDO extends BaseDO {
 
     /**
      * 编号
@@ -35,11 +34,14 @@ public class OrderRecipientBO extends BaseDO { // TODO FROM 芋艿 TO 小范，�
      */
     private String mobile;
     /**
-     * 手机方式
+     * 配送类型
+     *
+     * - 1 快递
      */
     private Integer type;
     /**
      * 收件详细地址
      */
     private String address;
+
 }

@@ -36,7 +36,6 @@ public class ProductSpuService {
 
 
 
-    @Override
     public ProductSkuBO getProductSku(Integer id) {
         ProductSkuDO sku = productSkuMapper.selectById(id);
         return ProductSpuConvert.INSTANCE.convert4(sku);

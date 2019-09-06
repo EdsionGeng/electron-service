@@ -13,21 +13,21 @@
 
 <dependencies>
 
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-        <exclusions>
-            <exclusion>
-                <artifactId>jackson-databind</artifactId>
-                <groupId>com.fasterxml.jackson.core</groupId>
-            </exclusion>
-        </exclusions>
-    </dependency>
-    <dependency>
-        <groupId>com.baomidou</groupId>
-        <artifactId>mybatis-plus-annotation</artifactId>
-        <version>3.1.1</version>
-    </dependency>
+    <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-web</artifactId>-->
+        <!--<exclusions>-->
+            <!--<exclusion>-->
+                <!--<artifactId>jackson-databind</artifactId>-->
+                <!--<groupId>com.fasterxml.jackson.core</groupId>-->
+            <!--</exclusion>-->
+        <!--</exclusions>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+        <!--<groupId>com.baomidou</groupId>-->
+        <!--<artifactId>mybatis-plus-annotation</artifactId>-->
+        <!--<version>3.1.1</version>-->
+    <!--</dependency>-->
     <dependency>
         <groupId>org.mapstruct</groupId>
         <artifactId>mapstruct</artifactId> <!-- use mapstruct-jdk8 for Java 8 or higher -->
@@ -46,11 +46,11 @@
         <!--<version>2.1.0.RELEASE</version>-->
     <!--</dependency>-->
 
-    <dependency>
-        <groupId>io.swagger</groupId>
-        <artifactId>swagger-annotations</artifactId>
+    <!--<dependency>-->
+        <!--<groupId>io.swagger</groupId>-->
+        <!--<artifactId>swagger-annotations</artifactId>-->
 
-    </dependency>
+    <!--</dependency>-->
     <!--<dependency>-->
         <!--<groupId>io.springfox</groupId>-->
         <!--<artifactId>springfox-swagger2</artifactId>-->
@@ -71,7 +71,11 @@
         <artifactId>validation-api</artifactId>
         <version>2.0.1.Final</version>
     </dependency>
-
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-annotation</artifactId>
+        <version>3.1.1</version>
+    </dependency>
     <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>

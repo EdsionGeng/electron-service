@@ -1,6 +1,5 @@
 package com.rent.model.bo;
 
-
 import lombok.Data;
 import lombok.experimental.Accessors;
 

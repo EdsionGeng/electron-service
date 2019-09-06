@@ -2,10 +2,12 @@ package com.people.rent.product;
 
 import com.rent.model.dataobject.ProductSkuDO;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
 
+@Repository
 public interface ProductSkuMapper {
 
     ProductSkuDO selectById(Integer id);
