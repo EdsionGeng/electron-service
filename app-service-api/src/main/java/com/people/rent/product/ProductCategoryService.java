@@ -7,6 +7,7 @@ import com.rent.model.dataobject.ProductCategoryDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -26,4 +27,9 @@ public class ProductCategoryService {
         return productCategoryMapper.selectById(productCategoryId);
     }
 
+
+    public List<ProductCategoryBO> getListByIds(Collection<Integer> ids) {
+        List<ProductCategoryDO> categoryList = productCategoryMapper.selectByIds(ids);
+        return ProductCategoryConvert.INSTANCE.convertToBO(categoryList);
+    }
 }

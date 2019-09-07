@@ -2,6 +2,7 @@ package com.people.rent.cart;
 
 
 import com.people.rent.convert.CartConvert;
+import com.people.rent.coupon.CouponService;
 import com.people.rent.order.OrderService;
 import com.rent.model.CommonResult;
 import com.rent.model.bo.CalcOrderPriceBO;
@@ -12,42 +13,50 @@ import com.rent.model.dto.CalcOrderPriceDTO;
 import com.rent.model.vo.UsersCalcSkuPriceVO;
 import com.rent.model.vo.UsersCartDetailVO;
 import com.rent.model.vo.UsersOrderConfirmCreateVO;
+import org.apache.ibatis.annotations.Param;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static com.rent.model.CommonResult.success;
 
 @RestController
 public class UserCartController {
 
+    @Autowired
     private CartService cartService;
 
+    @Autowired
     private OrderService orderService;
-
-   // private CouponService couponService;
+    @Autowired
+    private CouponService couponService;
 
     @PostMapping("add")
     public CommonResult<Integer> add(@RequestParam("skuId") Integer skuId,
-                                     @RequestParam("quantity") Integer quantity) {
+                                     @RequestParam("quantity") Integer quantity,
+                                     @RequestParam("timeId") Integer timeId,
+                                     @RequestParam("startTime") Date startTime,
+                                     @Param("endTime") Date endTime) {
         // 添加到购物车
-        this.cartService.add(UserSecurityContextHolder.getContext().getUserId(), skuId, quantity);
+        this.cartService.add(null, skuId, quantity, timeId, startTime, endTime);
         // 获得目前购物车商品总数量
-        return success(cartService.count(UserSecurityContextHolder.getContext().getUserId()));
+        return success(cartService.count(null));
     }
 
     @PostMapping("update_quantity")
     public CommonResult<UsersCartDetailVO> updateQuantity(@RequestParam("skuId") Integer skuId, // TODO 芋艿，先暂用这个 VO 。等促销活动出来后，做调整
-                                                          @RequestParam("quantity") Integer quantity) {
+                                                          @RequestParam("quantity") Integer quantity,
+                                                          @RequestParam("timeId") Integer timeId,
+                                                          @RequestParam("startTime") Date startTime,
+                                                          @Param("endTime") Date endTime) {
         // 添加到购物车
-        this.cartService.updateQuantity(UserSecurityContextHolder.getContext().getUserId(),
-                skuId, quantity);
+        this.cartService.updateQuantity(null,
+                skuId, quantity,timeId,startTime,endTime);
         // 获得目前购物车明细
         return getCartDetail();
     }
@@ -56,14 +65,14 @@ public class UserCartController {
     public CommonResult<UsersCartDetailVO> updateSelected(@RequestParam("skuIds") Set<Integer> skuIds, // TODO 芋艿，先暂用这个 VO 。等促销活动出来后，做调整
                                                           @RequestParam("selected") Boolean selected) {
         // 添加到购物车
-        this.cartService.updateSelected(UserSecurityContextHolder.getContext().getUserId(), skuIds, selected);
+        this.cartService.updateSelected(null, skuIds, selected);
         // 获得目前购物车明细
         return getCartDetail();
     }
 
     @GetMapping("count")
     public CommonResult<Integer> count() {
-        return success(this.cartService.count(UserSecurityContextHolder.getContext().getUserId()));
+        return success(this.cartService.count(null));
     }
 
     @GetMapping("/list")
@@ -73,7 +82,7 @@ public class UserCartController {
 
     private CommonResult<UsersCartDetailVO> getCartDetail() {
         // 获得购物车中选中的
-        List<CartItemBO> cartItems = cartService.list(UserSecurityContextHolder.getContext().getUserId(), null);
+        List<CartItemBO> cartItems = cartService.list(null, null);
         // 购物车为空时，构造空的 UsersOrderConfirmCreateVO 返回
         if (cartItems.isEmpty()) {
             UsersCartDetailVO result = new UsersCartDetailVO();
@@ -89,7 +98,7 @@ public class UserCartController {
 
     @GetMapping("/confirm_create_order")
     public CommonResult<UsersOrderConfirmCreateVO> getConfirmCreateOrder(@RequestParam(value = "couponCardId", required = false) Integer couponCardId) {
-        Integer userId = UserSecurityContextHolder.getContext().getUserId();
+        Integer userId = null;
         // 获得购物车中选中的
         List<CartItemBO> cartItems = cartService.list(userId, true);
         // 购物车为空时，构造空的 UsersOrderConfirmCreateVO 返回
@@ -111,11 +120,12 @@ public class UserCartController {
     private CalcOrderPriceBO list0(List<CartItemBO> cartItems, Integer couponCardId) {
         // 创建计算的 DTO
         CalcOrderPriceDTO calcOrderPriceDTO = new CalcOrderPriceDTO()
-                .setUserId(UserSecurityContextHolder.getContext().getUserId())
+                .setUserId(null)
                 .setItems(new ArrayList<>(cartItems.size()))
                 .setCouponCardId(couponCardId);
         for (CartItemBO item : cartItems) {
-            calcOrderPriceDTO.getItems().add(new CalcOrderPriceDTO.Item(item.getSkuId(), item.getQuantity(), item.getSelected()));
+            calcOrderPriceDTO.getItems().add(new CalcOrderPriceDTO.Item(item.getSkuId(), item.getQuantity(), item.getSelected(),
+                    item.getTimeId(), item.getStartTime(), item.getEndTime()));
         }
         // 执行计算
         return cartService.calcOrderPrice(calcOrderPriceDTO);

@@ -1,10 +1,10 @@
 package com.people.rent.convert;
 
-import cn.iocoder.mall.order.api.bo.OrderCommentMerchantReplyBO;
-import cn.iocoder.mall.order.api.bo.OrderCommentReplyCreateBO;
-import cn.iocoder.mall.order.api.bo.OrderCommentReplyPageBO;
-import cn.iocoder.mall.order.api.dto.OrderCommentReplyCreateDTO;
-import cn.iocoder.mall.order.biz.dataobject.OrderCommentReplyDO;
+import com.rent.model.bo.OrderCommentMerchantReplyBO;
+import com.rent.model.bo.OrderCommentReplyCreateBO;
+import com.rent.model.bo.OrderCommentReplyPageBO;
+import com.rent.model.dataobject.OrderCommentReplyDO;
+import com.rent.model.dto.reply.OrderCommentReplyCreateDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
@@ -34,4 +34,9 @@ public interface OrderCommentReplyConvert {
 
     @Mappings({})
     List<OrderCommentReplyPageBO.OrderCommentReplayItem> convertOrderCommentReplyItem(List<OrderCommentReplyDO> orderCommentReplyDOList);
+
+
+
+    @Mappings({})
+    List<OrderCommentReplyPageBO.OrderCommentReplayItem> convertOrderCommentReplayItem(List<OrderCommentReplyDO> orderCommentReplyDOList);
 }

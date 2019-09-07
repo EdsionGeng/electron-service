@@ -1,4 +1,4 @@
-package com.rent.model.dto;
+package com.rent.model.dto.reply;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

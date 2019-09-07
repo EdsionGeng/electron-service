@@ -20,7 +20,7 @@ public class CartItemBO {
     private Integer id;
     /**
      * 状态
-     *
+     * <p>
      * 1-正常
      * 2-主动删除
      * 3-下单删除
@@ -60,6 +60,12 @@ public class CartItemBO {
      * 商品购买数量
      */
     private Integer quantity;
+
+    private Integer timeId;
+
+    private Date startTime;
+
+    private Date endTime;
 
     // TODO 冗余字段
 

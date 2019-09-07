@@ -7,7 +7,7 @@
         sort, status, create_time
     </sql>
 
-    <select id="selectListByPidAndStatusOrderBySort" resultType="ProductCategoryDO">
+    <select id="selectListByPidAndStatusOrderBySort" resultType="com.rent.model.dataobject.ProductCategoryDO">
         SELECT
             <include refid="FIELDS" />
         FROM product_category
@@ -17,14 +17,14 @@
         ORDER BY sort ASC
     </select>
 
-    <select id="selectList" resultType="ProductCategoryDO">
+    <select id="selectList" resultType="com.rent.model.dataobject.ProductCategoryDO">
         SELECT
           <include refid="FIELDS" />
         FROM product_category
         WHERE deleted = 0
     </select>
 
-    <select id="selectById" parameterType="Integer" resultType="ProductCategoryDO">
+    <select id="selectById" parameterType="Integer" resultType="com.rent.model.dataobject.ProductCategoryDO">
         SELECT
           <include refid="FIELDS" />
         FROM product_category
@@ -32,7 +32,7 @@
         AND deleted = 0
     </select>
 
-    <select id="selectByIds" resultType="ProductCategoryDO">
+    <select id="selectByIds" resultType="com.rent.model.dataobject.ProductCategoryDO">
         SELECT
             <include refid="FIELDS" />
         FROM product_category
@@ -43,7 +43,7 @@
         AND deleted = 0
     </select>
 
-    <insert id="insert" parameterType="ProductCategoryDO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    <insert id="insert" parameterType="com.rent.model.dataobject.ProductCategoryDO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO product_category (
           pid, name, description, pic_url, sort,
           status, create_time, deleted
@@ -53,7 +53,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="ProductCategoryDO">
+    <update id="update" parameterType="com.rent.model.dataobject.ProductCategoryDO">
         UPDATE product_category
         <set>
             <if test="pid != null">

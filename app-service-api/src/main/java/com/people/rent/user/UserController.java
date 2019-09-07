@@ -47,8 +47,6 @@ public class UserController {
              */
             String accessToken = response.getAccessToken();
             String alipayUserId = response.getUserId();
-//            System.out.println("accessToken:" + accessToken);
-//            System.out.println("alipayUserId:" + alipayUserId);
 
             // 2. 查询该用户是否存在
             UserBO userInfo = userService.queryUserIsExist(alipayUserId);

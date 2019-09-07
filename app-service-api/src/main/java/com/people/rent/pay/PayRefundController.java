@@ -2,6 +2,7 @@ package com.people.rent.pay;
 
 
 import com.rent.model.CommonResult;
+import com.rent.model.constant.PayChannelEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,27 +19,27 @@ import java.io.IOException;
 @Slf4j
 public class PayRefundController {
 
-//    @Autowired
-//    private PayRefundService payRefundService;
-//
-//    @PostMapping(value = "pingxx_refund_success", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public String pingxxRefundSuccess(HttpServletRequest request) throws IOException {
-//        log.info("[pingxxRefundSuccess][被回调]");
-//        // 读取 webhook
-//        StringBuilder sb = new StringBuilder();
-//        try (BufferedReader reader = request.getReader()) {
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                sb.append(line);
-//            }
-//        }
-//
-//        CommonResult<Boolean> result = payRefundService.updateRefundSuccess(PayChannelEnum.PINGXX.getId(), sb.toString());
-//        if (result.isError()) {
-//            log.error("[pingxxRefundSuccess][message({}) result({})]", sb, result);
-//            return "failure";
-//        }
-//        return "success";
-//    }
+    @Autowired
+    private PayRefundService payRefundService;
+
+    @PostMapping(value = "pingxx_refund_success", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String pingxxRefundSuccess(HttpServletRequest request) throws IOException {
+        log.info("[pingxxRefundSuccess][被回调]");
+        // 读取 webhook
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader reader = request.getReader()) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+        }
+
+        CommonResult<Boolean> result = payRefundService.updateRefundSuccess(PayChannelEnum.ALIPAY.getId(), sb.toString());
+        if (result.isError()) {
+            log.error("[pingxxRefundSuccess][message({}) result({})]", sb, result);
+            return "failure";
+        }
+        return "success";
+    }
 
 }

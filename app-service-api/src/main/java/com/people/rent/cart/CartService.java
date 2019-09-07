@@ -1,11 +1,11 @@
 package com.people.rent.cart;
 
 import com.people.rent.convert.CartConvert;
+import com.people.rent.coupon.CouponService;
 import com.people.rent.product.ProductSpuService;
+import com.people.rent.promotion.PromotionActivityService;
 import com.rent.model.bo.*;
-import com.rent.model.constant.CartItemStatusEnum;
-import com.rent.model.constant.CommonStatusEnum;
-import com.rent.model.constant.OrderErrorCodeEnum;
+import com.rent.model.constant.*;
 import com.rent.model.dataobject.CartItemDO;
 import com.rent.model.dto.CalcOrderPriceDTO;
 import com.rent.util.utils.ServiceExceptionUtil;
@@ -23,8 +23,14 @@ public class CartService {
     @Autowired
     private CartMapper cartMapper;
 
+    @Autowired
+    private PromotionActivityService promotionActivityService;
+
+    @Autowired
+    private CouponService couponService;
+
     @SuppressWarnings("Duplicates")
-    public Boolean add(Integer userId, Integer skuId, Integer quantity) {
+    public Boolean add(Integer userId, Integer skuId, Integer quantity, Integer timeId, Date startTime, Date endTime) {
         // 查询 SKU 是否合法
         ProductSkuBO sku = productSpuService.getProductSku(skuId);
         if (sku == null
@@ -62,7 +68,7 @@ public class CartService {
     }
 
     @SuppressWarnings("Duplicates")
-    public Boolean updateQuantity(Integer userId, Integer skuId, Integer quantity) {
+    public Boolean updateQuantity(Integer userId, Integer skuId, Integer quantity, Integer timeId, Date startTime, Date endTime) {
         // 查询 SKU 是否合法
         ProductSkuBO sku = productSpuService.getProductSku(skuId);
         if (sku == null
@@ -80,9 +86,9 @@ public class CartService {
 
     private Boolean updateQuantity0(CartItemDO item, ProductSkuBO sku, Integer quantity) {
         // 校验库存
-        if (item.getQuantity() + quantity > sku.getQuantity()) {
-            throw ServiceExceptionUtil.exception(OrderErrorCodeEnum.CARD_ITEM_SKU_NOT_FOUND.getCode());
-        }
+//        if (item.getQuantity() + quantity > sku.getQuantity()) {
+//            throw ServiceExceptionUtil.exception(OrderErrorCodeEnum.CARD_ITEM_SKU_NOT_FOUND.getCode());
+//        }
         // 更新 CartItemDO
         cartMapper.updateQuantity(item.getId(), quantity);
         // 返回成功
@@ -156,7 +162,7 @@ public class CartService {
             discountTotal += itemGroup.getItems().stream().mapToInt(item -> item.getSelected() ? item.getDiscountTotal() : 0).sum();
             presentTotal += itemGroup.getItems().stream().mapToInt(item -> item.getSelected() ? item.getPresentTotal() : 0).sum();
         }
-        Assert.isTrue(buyTotal - discountTotal ==  presentTotal,
+        Assert.isTrue(buyTotal - discountTotal == presentTotal,
                 String.format("价格合计( %d - %d == %d )不正确", buyTotal, discountTotal, presentTotal));
         calcOrderPriceBO.setFee(new CalcOrderPriceBO.Fee(buyTotal, discountTotal, 0, presentTotal));
         // 返回
@@ -176,7 +182,7 @@ public class CartService {
 //        List<PromotionActivityBO> activityList = promotionActivityService.getPromotionActivityListBySpuId(sku.getSpuId(),
 //                Arrays.asList(PromotionActivityStatusEnum.WAIT.getValue(), PromotionActivityStatusEnum.RUN.getValue()));
 //        if (activityList.isEmpty()) { // 如果无促销活动，则直接返回默认结果即可
-            return new CalcSkuPriceBO().setOriginalPrice(sku.getPrice()).setBuyPrice(sku.getPrice());//       }
+        return new CalcSkuPriceBO().setOriginalPrice(sku.getPrice()).setBuyPrice(sku.getPrice());//       }
 //        // 如果有促销活动，则开始做计算 TODO 芋艿，因为现在暂时只有限时折扣 + 满减送。所以写的比较简单先
 //        PromotionActivityBO fullPrivilege = findPromotionActivityByType(activityList, PromotionActivityTypeEnum.FULL_PRIVILEGE);
 //        PromotionActivityBO timeLimitedDiscount = findPromotionActivityByType(activityList, PromotionActivityTypeEnum.TIME_LIMITED_DISCOUNT);

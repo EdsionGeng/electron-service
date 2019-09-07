@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,18 +39,28 @@ public class CalcOrderPriceDTO {
         private Integer quantity;
         /**
          * 是否选中
-         *
+         * <p>
          * 注意下，目前只有在购物车的时候，才可能出现该属性为 false 。其它情况下，都会为 true 为主。
          */
         private Boolean selected;
 
+        private Integer timeId;
+
+        private Date startTime;
+
+        private Date endTime;
+
+
         public Item() {
         }
 
-        public Item(Integer skuId, Integer quantity, Boolean selected) {
+        public Item(Integer skuId, Integer quantity, Boolean selected, Integer timeId, Date startTime, Date endTime) {
             this.skuId = skuId;
             this.quantity = quantity;
             this.selected = selected;
+            this.timeId = timeId;
+            this.startTime = startTime;
+            this.endTime = endTime;
         }
     }
 

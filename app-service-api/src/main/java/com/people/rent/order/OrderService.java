@@ -4,41 +4,31 @@ package com.people.rent.order;
 import com.google.common.collect.Lists;
 import com.people.rent.address.UserAddressService;
 import com.people.rent.cart.CartService;
+import com.people.rent.convert.*;
 import com.people.rent.coupon.CouponService;
+import com.people.rent.logistics.OrderLogisticsDetailMapper;
+import com.people.rent.logistics.OrderLogisticsMapper;
 import com.people.rent.pay.PayTransactionService;
 import com.people.rent.product.ProductSpuService;
 import com.rent.model.CommonResult;
 import com.rent.model.bo.*;
-import com.rent.model.constant.DeletedStatusEnum;
-import com.rent.model.constant.OrderErrorCodeEnum;
-import com.rent.model.dataobject.OrderDO;
-import com.rent.model.dataobject.OrderItemDO;
-import com.rent.model.dataobject.OrderRecipientDO;
-import com.rent.model.dto.OrderCreateDTO;
-import com.rent.model.dto.OrderQueryDTO;
+import com.rent.model.constant.*;
+import com.rent.model.dataobject.*;
+import com.rent.model.dto.*;
+import com.rent.model.dto.transaction.PayTransactionCreateDTO;
+import com.rent.util.utils.DateUtil;
 import com.rent.util.utils.ServiceExceptionUtil;
-import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
-
-    @Autowired
-    private OrderMapper orderMapper;
-
 
     /**
      * 支付过期时间 120 分钟
@@ -47,6 +37,7 @@ public class OrderService {
 
     @Autowired
     private OrderMapper orderMapper;
+
     @Autowired
     private OrderItemMapper orderItemMapper;
     @Autowired
@@ -76,7 +67,7 @@ public class OrderService {
 
         int totalCount = orderMapper.selectPageCount(orderQueryDTO);
         if (totalCount == 0) { // TODO FROM 芋艿 TO 小范 Collections.EMPTY_LIST 改成 Collections.emptyList()
-            return CommonResult.success(new OrderPageBO().setOrders(Collections.EMPTY_LIST).setTotal(0));
+            return CommonResult.success(new OrderPageBO().setOrders(Collections.emptyList()).setTotal(0));
         }
 
         // 获取订单数据
@@ -103,8 +94,7 @@ public class OrderService {
 
         List<OrderItemBO> orderItemBOList = OrderItemConvert.INSTANCE.convertOrderItemDO(orderItemDOList);
         Map<Integer, List<OrderItemBO>> orderItemBOMultimap = orderItemBOList.stream().collect(
-                Collectors.toMap(
-                        OrderItemBO::getOrderId,
+                Collectors.toMap(OrderItemBO::getOrderId,
                         item -> Lists.newArrayList(item),
                         (oldVal, newVal) -> {
                             oldVal.addAll(newVal);
@@ -172,7 +162,6 @@ public class OrderService {
                 .filter(o -> o.getOrderLogisticsId() != null)
                 .map(o -> o.getOrderLogisticsId())
                 .collect(Collectors.toSet());
-
 
 
         // 收件人信息
@@ -345,7 +334,8 @@ public class OrderService {
                 .setItems(new ArrayList<>(skus.size()))
                 .setCouponCardId(orderCreateDTO.getCouponCardId());
         for (OrderCreateDTO.OrderItem item : orderCreateDTO.getOrderItems()) {
-            calcOrderPriceDTO.getItems().add(new CalcOrderPriceDTO.Item(item.getSkuId(), item.getQuantity(), true));
+            calcOrderPriceDTO.getItems().add(new CalcOrderPriceDTO.Item(item.getSkuId(), item.getQuantity(), true,
+                    item.getTimeId(), item.getStartTime(), item.getEndTime()));
         }
         // 执行计算
         return cartService.calcOrderPrice(calcOrderPriceDTO);
@@ -368,7 +358,7 @@ public class OrderService {
         );
     }
 
-    @Override // TODO 芋艿，需要确认下这个方法的用途。因为涉及修改价格和数量。
+   // TODO 芋艿，需要确认下这个方法的用途。因为涉及修改价格和数量。
     public CommonResult updateOrderItem(OrderItemUpdateDTO orderUpdateDTO) {
         OrderItemDO orderItemDO = OrderItemConvert.INSTANCE.convert(orderUpdateDTO);
         orderItemMapper.updateById(orderItemDO);
@@ -378,7 +368,7 @@ public class OrderService {
         return CommonResult.success(null);
     }
 
-    @Override
+
     @Transactional
     public CommonResult updateOrderItemPayAmount(Integer orderId, Integer orderItemId, Integer payAmount) {
         OrderDO orderDO = orderMapper.selectById(orderId);
@@ -410,7 +400,7 @@ public class OrderService {
         return CommonResult.success(null);
     }
 
-    @Override
+
     @Transactional // TODO 芋艿，要校验下 userId 。不然可以取消任何用户的订单列。
     public CommonResult cancelOrder(Integer orderId, Integer reason, String otherReason) {
         // 关闭订单，在用户还未付款的时候可操作
@@ -447,7 +437,7 @@ public class OrderService {
         return CommonResult.success(null);
     }
 
-    @Override
+
     @Transactional // TODO FROM 芋艿 TO 小范：泛型，一定要明确哈。
     public CommonResult orderDelivery(OrderDeliveryDTO orderDelivery) {
         List<Integer> orderItemIds = orderDelivery.getOrderItemIds();
@@ -501,51 +491,51 @@ public class OrderService {
         return CommonResult.success(null);
     }
 
-    @Override
+
     public CommonResult updateOrderRemake(Integer orderId, String remake) {
         // 此处不做订单校验，直接设置备注即可
         orderMapper.updateById(new OrderDO().setId(orderId).setRemark(remake));
         return CommonResult.success(null);
     }
 
-    @Override
-    @Transactional // TODO FROM 芋艿 to 小范，先不做这个功能，电商一班不存在这个功能哈。
-    public CommonResult deleteOrderItem(OrderItemDeletedDTO orderItemDeletedDTO) {
-        Integer orderId = orderItemDeletedDTO.getOrderId();
-        List<Integer> orderItemIds = orderItemDeletedDTO.getOrderItemIds();
+//
+//    @Transactional // TODO FROM 芋艿 to 小范，先不做这个功能，电商一班不存在这个功能哈。
+//    public CommonResult deleteOrderItem(OrderItemDeletedDTO orderItemDeletedDTO) {
+//        Integer orderId = orderItemDeletedDTO.getOrderId();
+//        List<Integer> orderItemIds = orderItemDeletedDTO.getOrderItemIds();
+//
+//        // 获取当前有效的订单 item
+//        List<OrderItemDO> orderItemDOList = orderItemMapper
+//                .selectByDeletedAndOrderId(DeletedStatusEnum.DELETED_NO.getValue(), orderId);
+//
+//        List<OrderItemDO> effectiveOrderItems = orderItemDOList.stream()
+//                .filter(orderItemDO -> !orderItemIds.contains(orderItemDO.getId()))
+//                .collect(Collectors.toList());
+//
+//        // 检查订单 item，必须要有一个 item
+//        if (CollectionUtils.isEmpty(effectiveOrderItems)) {
+//            return ServiceExceptionUtil.error(OrderErrorCodeEnum.ORDER_ITEM_ONLY_ONE.getCode());
+//        }
+//
+//        // 更新订单 item
+//        orderItemMapper.updateByIds(
+//                orderItemIds,
+//                (OrderItemDO) new OrderItemDO()
+//                        .setDeleted(DeletedStatusEnum.DELETED_YES.getValue())
+//        );
+//
+//        // 更新订单 amount
+////        Integer totalAmount = orderCommon.calculatedAmount(effectiveOrderItems);
+//        Integer totalAmount = -1; // TODO 芋艿，需要修改下，价格相关
+//        orderMapper.updateById(
+//                new OrderDO()
+//                        .setId(orderId)
+//                        .setPayAmount(totalAmount)
+//        );
+//        return CommonResult.success(null);
+//    }
 
-        // 获取当前有效的订单 item
-        List<OrderItemDO> orderItemDOList = orderItemMapper
-                .selectByDeletedAndOrderId(DeletedStatusEnum.DELETED_NO.getValue(), orderId);
 
-        List<OrderItemDO> effectiveOrderItems = orderItemDOList.stream()
-                .filter(orderItemDO -> !orderItemIds.contains(orderItemDO.getId()))
-                .collect(Collectors.toList());
-
-        // 检查订单 item，必须要有一个 item
-        if (CollectionUtils.isEmpty(effectiveOrderItems)) {
-            return ServiceExceptionUtil.error(OrderErrorCodeEnum.ORDER_ITEM_ONLY_ONE.getCode());
-        }
-
-        // 更新订单 item
-        orderItemMapper.updateByIds(
-                orderItemIds,
-                (OrderItemDO) new OrderItemDO()
-                        .setDeleted(DeletedStatusEnum.DELETED_YES.getValue())
-        );
-
-        // 更新订单 amount
-//        Integer totalAmount = orderCommon.calculatedAmount(effectiveOrderItems);
-        Integer totalAmount = -1; // TODO 芋艿，需要修改下，价格相关
-        orderMapper.updateById(
-                new OrderDO()
-                        .setId(orderId)
-                        .setPayAmount(totalAmount)
-        );
-        return CommonResult.success(null);
-    }
-
-    @Override
     public CommonResult confirmReceiving(Integer userId, Integer orderId) {
         OrderDO orderDO = orderMapper.selectById(orderId);
 
@@ -576,14 +566,14 @@ public class OrderService {
         return CommonResult.success(null);
     }
 
-    @Override
+
     public CommonResult updateLogistics(OrderLogisticsUpdateDTO orderLogisticsDTO) {
         OrderLogisticsDO orderLogisticsDO = OrderLogisticsConvert.INSTANCE.convert(orderLogisticsDTO);
         orderLogisticsMapper.updateById(orderLogisticsDO);
         return CommonResult.success(null);
     }
 
-    @Override
+
     public CommonResult deleteOrder(Integer id) {
         // 删除订单操作，一般用于 用户端删除，是否存在检查可以过掉
         orderMapper.updateById((OrderDO) new OrderDO()
@@ -593,7 +583,7 @@ public class OrderService {
         return CommonResult.success(null);
     }
 
-    @Override
+
     public String updatePaySuccess(String orderId, Integer payAmount) {
         OrderDO order = orderMapper.selectById(Integer.valueOf(orderId));
         if (order == null) { // 订单不存在
@@ -618,12 +608,12 @@ public class OrderService {
         return "success";
     }
 
-    @Override
+
     public CommonResult listenerConfirmGoods() {
         return null;
     }
 
-    @Override
+
     public CommonResult listenerExchangeGoods() {
         return null;
     }

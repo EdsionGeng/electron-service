@@ -7,7 +7,7 @@
         price, quantity, create_time
     </sql>
 
-    <select id="selectById" parameterType="Integer" resultType="ProductSkuDO">
+    <select id="selectById" parameterType="Integer" resultType="com.rent.model.dataobject.ProductSkuDO">
         SELECT
             <include refid="FIELDS" />
         FROM product_sku
@@ -15,7 +15,7 @@
         AND deleted = 0
     </select>
 
-    <select id="selectByIds" resultType="ProductSkuDO">
+    <select id="selectByIds" resultType="com.rent.model.dataobject.ProductSkuDO">
         SELECT
             <include refid="FIELDS" />
         FROM product_sku
@@ -38,7 +38,7 @@
         </foreach>
     </insert>
 
-    <select id="selectListBySpuIdAndStatus" resultType="ProductSkuDO">
+    <select id="selectListBySpuIdAndStatus" resultType="com.rent.model.dataobject.ProductSkuDO">
       SELECT
           <include refid="FIELDS" />
       FROM product_sku
@@ -47,7 +47,7 @@
       AND deleted = 0
     </select>
 
-    <update id="update" parameterType="ProductSpuDO">
+    <update id="update" parameterType="com.rent.model.dataobject.ProductSpuDO">
         UPDATE product_sku
         <set>
             <if test="spuId != null">

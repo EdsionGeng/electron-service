@@ -4,6 +4,8 @@ import com.rent.model.bo.UserAddressBO;
 import com.rent.model.dataobject.UserAddressDO;
 import com.rent.model.dto.UserAddressAddDTO;
 import com.rent.model.dto.UserAddressUpdateDTO;
+import com.rent.model.po.UserAddressAddPO;
+import com.rent.model.po.UserAddressUpdatePO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
@@ -21,6 +23,11 @@ public interface UserAddressConvert {
 
     UserAddressConvert INSTANCE = Mappers.getMapper(UserAddressConvert.class);
 
+    @Mappings({})
+    UserAddressAddDTO convert(UserAddressAddPO userAddressAddPO);
+
+    @Mappings({})
+    UserAddressUpdateDTO convert(UserAddressUpdatePO userAddressUpdatePO);
     @Mappings({})
     UserAddressDO convert(UserAddressAddDTO userAddressAddDTO);
 

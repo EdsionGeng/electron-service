@@ -8,7 +8,7 @@
         create_time
     </sql>
 
-    <select id="selectById" parameterType="Integer" resultType="ProductSpuDO">
+    <select id="selectById" parameterType="Integer" resultType="com.rent.model.dataobject.ProductSpuDO">
         SELECT
             <include refid="FIELDS" />
         FROM product_spu
@@ -16,7 +16,7 @@
         AND deleted = 0
     </select>
 
-    <select id="selectByIds" resultType="ProductSpuDO">
+    <select id="selectByIds" resultType="com.rent.model.dataobject.ProductSpuDO">
         SELECT
             <include refid="FIELDS" />
         FROM product_spu
@@ -41,7 +41,7 @@
         LIMIT #{limit}
     </select>
 
-    <insert id="insert" parameterType="ProductSpuDO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    <insert id="insert" parameterType="com.rent.model.dataobject.ProductSpuDO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO product_spu (
             name, sell_point, description, cid, pic_urls,
             visible, sort, price, quantity,
@@ -53,7 +53,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="ProductSpuDO">
+    <update id="update" parameterType="com.rent.model.dataobject.ProductSpuDO">
         UPDATE product_spu
         <set>
             <if test="name != null">
@@ -90,7 +90,7 @@
         WHERE id = #{id}
     </update>
 
-    <select id="selectListByNameLikeOrderBySortAsc" resultType="ProductSpuDO">
+    <select id="selectListByNameLikeOrderBySortAsc" resultType="com.rent.model.dataobject.ProductSpuDO">
         SELECT
             <include refid="FIELDS" />
         FROM product_spu

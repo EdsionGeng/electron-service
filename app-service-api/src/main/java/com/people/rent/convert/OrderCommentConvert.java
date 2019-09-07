@@ -5,7 +5,7 @@ import com.rent.model.bo.OrderCommentInfoBO;
 import com.rent.model.bo.OrderCommentStateInfoPageBO;
 import com.rent.model.bo.OrderCommentTimeOutBO;
 import com.rent.model.dataobject.OrderCommentDO;
-import com.rent.model.dto.OrderCommentCreateDTO;
+import com.rent.model.dto.reply.OrderCommentCreateDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;

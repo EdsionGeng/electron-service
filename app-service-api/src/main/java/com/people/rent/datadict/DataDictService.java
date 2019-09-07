@@ -1,6 +1,9 @@
 package com.people.rent.datadict;
 
+import com.people.rent.convert.DataDictConvert;
+import com.rent.model.CommonResult;
 import com.rent.model.bo.DataDictBO;
+import com.rent.model.dataobject.DataDictDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,20 +25,13 @@ public class DataDictService {
         return DataDictConvert.INSTANCE.convert(dataDicts);
     }
 
-
-
-
-
-
-
-    @Override
     public CommonResult<DataDictBO> getDataDict(String dictKey, Object dictValue) {
         DataDictDO dataDictDO = dataDictMapper.selectByEnumValueAndValue(dictKey, String.valueOf(dictValue));
         DataDictBO dataDictBO = DataDictConvert.INSTANCE.convert(dataDictDO);
         return CommonResult.success(dataDictBO);
     }
 
-    @Override
+
     public CommonResult<List<DataDictBO>> getDataDict(String dictKey) {
         List<DataDictDO> dataDictDOList = dataDictMapper.selectByEnumValue(dictKey);
         List<DataDictBO> dataDictBOList = DataDictConvert.INSTANCE.convert(dataDictDOList);

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.iocoder.mall.user.biz.dao.UserMapper">
+<mapper namespace="com.people.rent.user.UserMapper">
 
     <sql id="FIELDS">
       id, mobile, nickname, avatar, status,
       create_time, deleted
     </sql>
 
-    <insert id="insert" parameterType="UserDO" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.rent.model.dataobject.UserDO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO users (
           id, mobile, status, create_time, deleted
         ) VALUES (
@@ -15,7 +15,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="UserDO">
+    <update id="update" parameterType="com.rent.model.dataobject.UserDO">
         UPDATE users
         <set>
             <if test="mobile != null">
@@ -37,7 +37,7 @@
         WHERE id = #{id}
     </update>
 
-    <select id="selectById" parameterType="Integer" resultType="UserDO">
+    <select id="selectById" parameterType="Integer" resultType="com.rent.model.dataobject.UserDO">
         SELECT
            <include refid="FIELDS" />
         FROM users
@@ -45,7 +45,7 @@
         AND deleted = 0
     </select>
 
-    <select id="selectByMobile" parameterType="String" resultType="UserDO">
+    <select id="selectByMobile" parameterType="String" resultType="com.rent.model.dataobject.UserDO">
       SELECT
           <include refid="FIELDS" />
       FROM users
@@ -53,7 +53,7 @@
       AND deleted = 0
     </select>
 
-    <select id="selectListByNicknameLike" resultType="UserDO">
+    <select id="selectListByNicknameLike" resultType="com.rent.model.dataobject.UserDO">
         SELECT
             <include refid="FIELDS" />
         FROM users

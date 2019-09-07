@@ -7,7 +7,7 @@
         create_time, update_time, has_default, deleted
     </sql>
 
-    <insert id="insert" parameterType="UserAddressDO" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.rent.model.dataobject.UserAddressDO" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user_address (
             user_id, area_no, `name`, mobile, address,
             create_time, update_time, has_default, deleted
@@ -45,7 +45,7 @@
         WHERE id = #{id}
     </update>
 
-    <select id="selectByUserIdAndId" resultType="cn.iocoder.mall.user.biz.dataobject.UserAddressDO">
+    <select id="selectByUserIdAndId" resultType="com.rent.model.dataobject.UserAddressDO">
         SELECT
         <include refid="FIELDS" />
         FROM user_address
@@ -53,7 +53,7 @@
         AND id = #{id}
     </select>
 
-    <select id="selectByUserIdAndDeleted" resultType="cn.iocoder.mall.user.biz.dataobject.UserAddressDO">
+    <select id="selectByUserIdAndDeleted" resultType="com.rent.model.dataobject.UserAddressDO">
         SELECT
         <include refid="FIELDS" />
         FROM user_address
@@ -61,7 +61,7 @@
         AND `user_id` = #{userId}
     </select>
 
-    <select id="selectHasDefault" resultType="cn.iocoder.mall.user.biz.dataobject.UserAddressDO">
+    <select id="selectHasDefault" resultType="com.rent.model.dataobject.UserAddressDO">
         SELECT
         <include refid="FIELDS" />
         FROM user_address

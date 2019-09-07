@@ -1,4 +1,4 @@
-package com.people.rent.promotion;
+package com.people.rent.banner;
 
 
 import com.people.rent.banner.BannerService;

@@ -4,20 +4,41 @@ import com.rent.model.dataobject.ProductSpuDO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
-@Repository
 
+@Repository
 public interface ProductSpuMapper {
+
+    ProductSpuDO selectById(Integer id);
+
+    List<ProductSpuDO> selectByIds(@Param("ids") Collection<Integer> ids);
+
+    /**
+     * 获得大于 id 的商品编号数组
+     *
+     * @param id    商品编号
+     * @param limit 数量
+     * @return 商品编号数组
+     */
+    List<Integer> selectIdListByIdGt(@Param("id") Integer id,
+                                     @Param("limit") Integer limit);
+
+    void insert(ProductSpuDO productSpuDO);
+
+    void update(ProductSpuDO productSpuDO);
 
     // TODO 芋艿，需要捉摸下，怎么优化下。参数有点多
     List<ProductSpuDO> selectListByNameLikeOrderBySortAsc(@Param("name") String name,
                                                           @Param("cid") Integer cid,
                                                           @Param("visible") Boolean visible,
-                                                          @Param("startSize") Integer offset,
-                                                          @Param("pageSize") Integer limit);
+                                                          @Param("shopId") Integer shopId,
+                                                          @Param("offset") Integer offset,
+                                                          @Param("limit") Integer limit);
 
     Integer selectCountByNameLike(@Param("name") String name,
                                   @Param("cid") Integer cid,
-                                  @Param("visible") Boolean visible);
-    ProductSpuDO selectById(Integer id);
+                                  @Param("visible") Boolean visible,
+                                  @Param("shopId") Integer shopId);
 }
+

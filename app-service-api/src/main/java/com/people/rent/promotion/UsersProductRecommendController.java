@@ -1,6 +1,14 @@
 package com.people.rent.promotion;
 
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import com.people.rent.convert.ProductRecommendConvert;
+import com.people.rent.product.ProductSpuService;
+import com.rent.model.CommonResult;
+import com.rent.model.bo.ProductRecommendBO;
+import com.rent.model.bo.ProductSpuBO;
+import com.rent.model.constant.CommonStatusEnum;
 import com.rent.model.vo.UsersProductRecommendVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("product_recommend")
@@ -22,7 +34,7 @@ public class UsersProductRecommendController {
     private ProductSpuService productSpuService;
 
     @GetMapping("/list")
-    @ApiOperation("获得所有 Banner 列表")
+    @ApiOperation("获得所有推荐商品列表")
     public CommonResult<Map<Integer, Collection<UsersProductRecommendVO>>> list() {
         // 查询商品推荐列表
         List<ProductRecommendBO> productRecommends = productRecommendService.getProductRecommendList(

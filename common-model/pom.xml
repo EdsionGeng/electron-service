@@ -40,17 +40,17 @@
         <groupId>com.alibaba</groupId>
         <artifactId>fastjson</artifactId>
     </dependency>
-    <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
-        <!--<version>2.1.0.RELEASE</version>-->
-    <!--</dependency>-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        <version>2.1.0.RELEASE</version>
+    </dependency>
 
-    <!--<dependency>-->
-        <!--<groupId>io.swagger</groupId>-->
-        <!--<artifactId>swagger-annotations</artifactId>-->
+    <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-annotations</artifactId>
 
-    <!--</dependency>-->
+    </dependency>
     <!--<dependency>-->
         <!--<groupId>io.springfox</groupId>-->
         <!--<artifactId>springfox-swagger2</artifactId>-->

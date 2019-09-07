@@ -4,7 +4,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -47,7 +46,7 @@ public class UserAddressAddPO implements Serializable {
      */
     @ApiModelProperty("收件详细地址")
     @NotEmpty(message = "详细地址不能为空")
-    @Length(min = 10, max = 100, message = "地址在 10 ~ 100 字之间!")
+    @Size(min = 10, max = 100, message = "地址在 10 ~ 100 字之间!")
     private String address;
 
     /**

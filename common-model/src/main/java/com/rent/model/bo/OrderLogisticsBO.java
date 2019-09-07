@@ -1,6 +1,7 @@
 package com.rent.model.bo;
 
-import cn.iocoder.common.framework.dataobject.BaseDO;
+
+import com.rent.model.dataobject.BaseDO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

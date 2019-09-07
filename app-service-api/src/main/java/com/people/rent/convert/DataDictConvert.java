@@ -1,6 +1,7 @@
 package com.people.rent.convert;
 
 import com.rent.model.bo.DataDictBO;
+import com.rent.model.dataobject.DataDictDO;
 import com.rent.model.vo.DataDictEnumVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
@@ -13,7 +14,13 @@ public interface DataDictConvert {
 
     DataDictConvert INSTANCE = Mappers.getMapper(DataDictConvert.class);
 
-    @Mappings({})
-    List<DataDictEnumVO.Value> convert2(List<DataDictBO> dataDictBOs);
+//    DataDictDO convert(DataDictAddDTO dataDictAddDTO);
+//
+//    DataDictDO convert(DataDictUpdateDTO dataDictUpdateDTO);
+
+    DataDictBO convert(DataDictDO dataDictDO);
+
+    List<DataDictBO> convert(List<DataDictDO> dataDictDOs);
+
 
 }

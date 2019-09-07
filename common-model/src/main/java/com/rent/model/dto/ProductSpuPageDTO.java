@@ -14,7 +14,7 @@ public class ProductSpuPageDTO {
 
     /**
      * 商品名
-     *
+     * <p>
      * 模糊匹配
      */
     private String name;
@@ -28,10 +28,15 @@ public class ProductSpuPageDTO {
     private Boolean visible;
     /**
      * 是否有库存
-     *
+     * <p>
      * 允许为空。空时，不进行筛选
      */
     private Boolean hasQuantity;
+
+    /**
+     * 商铺ID
+     */
+    private Integer shopId;
 
     @NotNull(message = "页码不能为空")
     private Integer pageNo;

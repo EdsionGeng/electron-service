@@ -10,8 +10,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class CouponCardAvailableBO extends CouponCardBO
-{
+public class CouponCardAvailableBO extends CouponCardBO {
 
     /**
      * 是否可用

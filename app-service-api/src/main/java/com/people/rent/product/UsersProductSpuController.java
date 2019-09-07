@@ -37,13 +37,15 @@ public class UsersProductSpuController {
     @ApiOperation("商品 SPU 分页列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "cid", value = "分类编号", example = "1"),
-            @ApiImplicitParam(name = "pageNo", value = "页码，从 1 开始", example = "1"),
+            @ApiImplicitParam(name = "pageNo", value = "页码，从 1 开始",required = true, example = "1"),
             @ApiImplicitParam(name = "pageSize", value = "每页条数", required = true, example = "10"),
+            @ApiImplicitParam(name = "shopId", value = "商店Id", example = "10"),
     })
     @Deprecated // 使用商品搜索接口
     public CommonResult<UsersProductSpuPageVO> page(@RequestParam(value = "cid", required = false) Integer cid,
                                                     @RequestParam(value = "pageNo", defaultValue = "0") Integer pageNo,
-                                                    @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+                                                    @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+                                                    @RequestParam(value = "shopId", defaultValue = "10") Integer shopId) {
         // 创建 ProductSpuPageDTO 对象
         ProductSpuPageDTO productSpuPageDTO = new ProductSpuPageDTO().setCid(cid).setVisible(true)
                 .setPageNo(pageNo).setPageSize(pageSize);

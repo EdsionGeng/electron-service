@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -31,8 +32,8 @@ public class UserAddressController {
 
     @PostMapping("add")
     @ApiOperation(value = "用户地址-添加")
-    public CommonResult addAddress(@Validated UserAddressAddPO userAddressAddPO) {
-        //Integer userId = UserSecurityContextHolder.getContext().getUserId();
+    public CommonResult addAddress(@Validated UserAddressAddPO userAddressAddPO,HttpServletRequest request) {
+        Integer userId = null;
         UserAddressAddDTO userAddressAddDTO = UserAddressConvert.INSTANCE.convert(userAddressAddPO);
         userAddressAddDTO.setUserId(userId);
         return userAddressService.addAddress(userAddressAddDTO);
@@ -40,8 +41,8 @@ public class UserAddressController {
 
     @PutMapping("update")
     @ApiOperation(value = "用户地址-更新")
-    public CommonResult updateAddress(@Validated UserAddressUpdatePO userAddressUpdatePO) {
-        //Integer userId = UserSecurityContextHolder.getContext().getUserId();
+    public CommonResult updateAddress(@Validated UserAddressUpdatePO userAddressUpdatePO,HttpServletRequest request) {
+        Integer userId = null;
         UserAddressUpdateDTO userAddressUpdateDTO = UserAddressConvert.INSTANCE.convert(userAddressUpdatePO);
         userAddressUpdateDTO.setUserId(userId);
         return userAddressService.updateAddress(userAddressUpdateDTO);
@@ -49,29 +50,29 @@ public class UserAddressController {
 
     @DeleteMapping("remove")
     @ApiOperation(value = "用户地址-删除")
-    public CommonResult removeAddress(@RequestParam("id") Integer id) {
-        //Integer userId = UserSecurityContextHolder.getContext().getUserId();
+    public CommonResult removeAddress(@RequestParam("id") Integer id,HttpServletRequest request) {
+        Integer userId = null;
         return userAddressService.removeAddress(userId, id);
     }
 
     @GetMapping("list")
     @ApiOperation(value = "用户地址列表")
-    public CommonResult<List<UserAddressBO>> addressList() {
-        //Integer userId = UserSecurityContextHolder.getContext().getUserId();
+    public CommonResult<List<UserAddressBO>> addressList(HttpServletRequest request) {
+        Integer userId = null;
         return userAddressService.addressList(userId);
     }
 
     @GetMapping("address")
     @ApiOperation(value = "获取地址")
-    public CommonResult<UserAddressBO> getAddress(@RequestParam("id") Integer id) {
-        //Integer userId = UserSecurityContextHolder.getContext().getUserId();
+    public CommonResult<UserAddressBO> getAddress(@RequestParam("id") Integer id,HttpServletRequest request) {
+        Integer userId = null;
         return userAddressService.getAddress(userId, id);
     }
 
     @GetMapping("default_address")
     @ApiOperation(value = "获取默认地址")
-    public CommonResult<UserAddressBO> getDefaultAddress() {
-        //Integer userId = UserSecurityContextHolder.getContext().getUserId();
+    public CommonResult<UserAddressBO> getDefaultAddress(HttpServletRequest request) {
+        Integer userId = null;
         return userAddressService.getDefaultAddress(userId);
     }
 }

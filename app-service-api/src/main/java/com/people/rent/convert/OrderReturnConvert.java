@@ -1,11 +1,14 @@
 package com.people.rent.convert;
 
-import cn.iocoder.mall.order.api.bo.OrderReturnInfoBO;
-import cn.iocoder.mall.order.api.bo.OrderReturnListBO;
-import cn.iocoder.mall.order.api.dto.OrderReturnApplyDTO;
-import cn.iocoder.mall.order.api.dto.OrderReturnCreateDTO;
-import cn.iocoder.mall.order.biz.dataobject.OrderItemDO;
-import cn.iocoder.mall.order.biz.dataobject.OrderReturnDO;
+import com.rent.model.bo.OrderReturnInfoBO;
+import com.rent.model.bo.OrderReturnListBO;
+import com.rent.model.dataobject.OrderItemDO;
+import com.rent.model.dataobject.OrderReturnDO;
+import com.rent.model.dto.OrderReturnApplyDTO;
+import com.rent.model.dto.OrderReturnCreateDTO;
+import com.rent.model.dto.OrderReturnQueryDTO;
+import com.rent.model.po.OrderReturnApplyPO;
+import com.rent.model.po.OrderReturnQueryPO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
@@ -37,4 +40,10 @@ public interface OrderReturnConvert {
 
     @Mappings({})
     List<OrderReturnListBO.OrderReturn> convertListBO(List<OrderReturnDO> orderReturnDOList);
+
+    @Mappings({})
+    OrderReturnApplyDTO convert(OrderReturnApplyPO orderReturnApplyPO);
+
+    @Mappings({})
+    OrderReturnQueryDTO convert(OrderReturnQueryPO orderReturnQueryPO);
 }

@@ -8,6 +8,7 @@ import com.people.rent.coupon.CouponService;
 import com.people.rent.datadict.DataDictService;
 import com.rent.model.CommonResult;
 import com.rent.model.bo.*;
+import com.rent.model.constant.DictKeyConstants;
 import com.rent.model.constant.OrderErrorCodeEnum;
 import com.rent.model.dto.CalcOrderPriceDTO;
 import com.rent.model.dto.OrderCreateDTO;
@@ -21,10 +22,12 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,8 +57,8 @@ public class OrderController {
     @GetMapping("order_page")
 
     @ApiOperation("订单分页")
-    public CommonResult<OrderPageBO> getOrderPage(@Validated OrderQueryDTO orderQueryDTO) {
-        // Integer userId = UserSecurityContextHolder.getContext().getUserId();
+    public CommonResult<OrderPageBO> getOrderPage(@Validated OrderQueryDTO orderQueryDTO, HttpServletRequest request) {
+        Integer userId = null;
         orderQueryDTO.setUserId(userId);
         return orderService.getOrderPage(orderQueryDTO);
     }
@@ -76,7 +79,7 @@ public class OrderController {
                                                            @RequestParam(value = "couponCardId", required = false) Integer couponCardId,
                                                            @RequestParam(value = "remark", required = false) String remark,
                                                            HttpServletRequest request) {
-        Integer userId = UserSecurityContextHolder.getContext().getUserId();
+        Integer userId = null;
         // 获得购物车中选中的商品
         List<CartItemBO> cartItems = cartService.list(userId, true);
         if (cartItems.isEmpty()) {
@@ -98,22 +101,23 @@ public class OrderController {
     }
 
     @GetMapping("confirm_create_order")
-
     @ApiOperation("确认创建订单")
     public CommonResult<UsersOrderConfirmCreateVO> getConfirmCreateOrder(@RequestParam("skuId") Integer skuId,
                                                                          @RequestParam("quantity") Integer quantity,
+                                                                         @RequestParam(value = "timeId", required = false) Integer timeId,
+                                                                         @RequestParam(value = "startTime", required = false) Date startTime,
+                                                                         @RequestParam(value = "endTime", required = false) Date endTime,
                                                                          @RequestParam(value = "couponCardId", required = false) Integer couponCardId,
                                                                          HttpServletRequest request) {
         Integer userId = Integer.parseInt(request.getHeader("oAuth"));
         // 创建 CalcOrderPriceDTO 对象，并执行价格计算
         CalcOrderPriceDTO calcOrderPriceDTO = new CalcOrderPriceDTO()
                 .setUserId(userId)
-                .setItems(Collections.singletonList(new CalcOrderPriceDTO.Item(skuId, quantity, true)))
+                .setItems(Collections.singletonList(new CalcOrderPriceDTO.Item(skuId, quantity, true, timeId, startTime, endTime)))
                 .setCouponCardId(couponCardId);
         CalcOrderPriceBO calcOrderPrice = cartService.calcOrderPrice(calcOrderPriceDTO);
         // 获得优惠劵
-        List<CouponCardAvailableBO> couponCards = couponService.getCouponCardList(userId,
-                CartConvert.INSTANCE.convertList(calcOrderPrice.getItemGroups()));
+        List<CouponCardAvailableBO> couponCards = couponService.getCouponCardList(userId, CartConvert.INSTANCE.convertList(calcOrderPrice.getItemGroups()));
         // 执行数据拼装
         return CommonResult.success(CartConvert.INSTANCE.convert(calcOrderPrice).setCouponCards(couponCards));
     }
@@ -121,14 +125,14 @@ public class OrderController {
     @PostMapping("confirm_receiving")
     @ApiOperation("确认收货")
     public CommonResult confirmReceiving(@RequestParam("orderId") Integer orderId) {
-        Integer userId = UserSecurityContextHolder.getContext().getUserId();
+        Integer userId =null;
         return orderService.confirmReceiving(userId, orderId);
     }
 
     @GetMapping("info")
     @ApiOperation("订单详情")
     public CommonResult<OrderInfoBO> orderInfo(@RequestParam("orderId") Integer orderId) {
-        Integer userId = UserSecurityContextHolder.getContext().getUserId();
+        Integer userId =null;
         CommonResult<OrderInfoBO> commonResult = orderService.info(userId, orderId);
 
         OrderInfoBO orderInfoBO = commonResult.getData();

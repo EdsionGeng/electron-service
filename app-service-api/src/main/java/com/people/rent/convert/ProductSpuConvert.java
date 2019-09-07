@@ -75,6 +75,23 @@ public interface ProductSpuConvert {
     ProductSkuDetailBO convert3(ProductSkuDO sku);
 
     @Mappings({})
+    ProductSkuBO convert4(ProductSkuDO sku);
+
+
+    @Mappings({})
+    AdminsProductSpuDetailVO convert(ProductSpuDetailBO productSpuDetailBO);
+
+//    @Mappings({})
+//    CommonResult<AdminsProductSpuDetailVO> convert(CommonResult<ProductSpuDetailBO> result);
+
+    @Mappings({})
+    AdminsProductSpuPageVO convert2(ProductSpuPageBO result);
+
+    @Mappings({})
+    List<AdminsProductSpuVO> convert3(List<ProductSpuBO> result);
+
+
+    @Mappings({})
     UsersProductSpuDetailVO convert4(ProductSpuDetailBO result);
 
     @Mappings({}) // TODO 芋艿，后续细看下 mapstruct 的 API ，优化这块

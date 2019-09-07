@@ -1,9 +1,14 @@
 package com.people.rent.promotion;
 
 
+import com.people.rent.convert.CouponCardConvert;
+import com.people.rent.convert.CouponTemplateConvert;
 import com.people.rent.coupon.CouponService;
 import com.rent.model.CommonResult;
 import com.rent.model.bo.CouponCardBO;
+import com.rent.model.bo.CouponCardPageBO;
+import com.rent.model.bo.CouponTemplateBO;
+import com.rent.model.dto.CouponCardPageDTO;
 import com.rent.model.vo.UsersCouponCardPageVO;
 import com.rent.model.vo.UsersCouponCardVO;
 import com.rent.model.vo.UsersCouponTemplateVO;
@@ -45,7 +50,7 @@ public class UsersCouponController {
                                                         @RequestParam(value = "pageNo", defaultValue = "0") Integer pageNo,
                                                         @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         CouponCardPageBO result = couponService.getCouponCardPage(new CouponCardPageDTO()
-                .setStatus(status).setUserId(UserSecurityContextHolder.getContext().getUserId())
+                .setStatus(status).setUserId(null)
                 .setPageNo(pageNo).setPageSize(pageSize));
         return CommonResult.success(CouponCardConvert.INSTANCE.convert2(result));
     }
@@ -54,7 +59,7 @@ public class UsersCouponController {
     @ApiOperation(value = "领取优惠劵")
     @ApiImplicitParam(name = "templateId", value = "优惠劵（码）模板编号", required = true, example = "10")
     public CommonResult<UsersCouponCardVO> cardAdd(@RequestParam("templateId") Integer templateId) {
-        CouponCardBO result = couponService.addCouponCard(UserSecurityContextHolder.getContext().getUserId(), templateId);
+        CouponCardBO result = couponService.addCouponCard(null, templateId);
         return CommonResult.success(CouponCardConvert.INSTANCE.convert(result));
     }
 
