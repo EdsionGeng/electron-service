@@ -67,11 +67,11 @@ public class ProductSpuDO extends DeletableDO {
      * 目前的计算方式是，以 Sku 最小价格为准
      */
     private Integer price;
-    /**
-     * 库存数量
-     *
-     * 目前的计算方式是，以 Sku 库存累加为准
-     */
-    private Integer quantity;
+//    /**
+//     * 库存数量
+//     *
+//     * 目前的计算方式是，以 Sku 库存累加为准
+//     */
+//    private Integer quantity;
 
 }

@@ -89,7 +89,7 @@ public class PayTransactionService {
         } else {
             payTransaction = PayTransactionConvert.INSTANCE.convert(payTransactionCreateDTO);
             payTransaction.setStatus(PayTransactionStatusEnum.WAITING.getValue())
-                    .setNotifyUrl(payAppDO.getNotifyUrl());
+                    .setNotifyUrl(payAppDO.getPayNotifyUrl());
             payTransaction.setCreateTime(new Date());
             payTransactionMapper.insert(payTransaction);
         }
@@ -182,7 +182,7 @@ public class PayTransactionService {
         }
         log.info("[updateTransactionPaySuccess][PayTransactionDO({}) 更新为已支付]", transaction.getId());
         // 3 新增 PayNotifyTaskDO 注释原因，参见 PayRefundSuccessConsumer 类。
-//        payNotifyService.addTransactionNotifyTask(transaction, extension);
+        // payNotifyService.addTransactionNotifyTask(transaction, extension);
         // 返回结果
         return true;
     }

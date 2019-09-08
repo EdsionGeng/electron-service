@@ -59,7 +59,7 @@ public class PayTransactionDO extends DeletableDO {
     /**
      * 支付状态
      *
-     * @see cn.iocoder.mall.pay.api.constant.PayTransactionStatusEnum
+     * @see @link{com.rent.model.constant.PayTransactionStatusEnum}
      */
     private Integer status;
     /**

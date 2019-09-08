@@ -23,7 +23,7 @@ public class PayAppDO extends DeletableDO {
      * 异步通知地址
      * TODO 芋艿，修改成 payNotifyUrl
      */
-    private String notifyUrl;
+    private String payNotifyUrl;
     /**
      * 退款异步通知地址
      */

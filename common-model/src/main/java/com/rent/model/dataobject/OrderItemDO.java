@@ -47,6 +47,21 @@ public class OrderItemDO extends DeletableDO {
      * 数量
      */
     private Integer quantity;
+
+    /**
+     * 选择时间周期
+     */
+    private Integer timeId;
+
+    /**
+     * 自定义租期开始时间
+     */
+    private Date startTime;
+
+    /**
+     * 自定义租期结束时间
+     */
+    private Date endTime;
     /**
      * 原始单价，单位：分。
      */
@@ -61,7 +76,7 @@ public class OrderItemDO extends DeletableDO {
     private Integer presentPrice;
     /**
      * 购买总金额，单位：分
-     *
+     * <p>
      * 用途类似 {@link #presentTotal}
      */
     private Integer buyTotal;
@@ -71,7 +86,7 @@ public class OrderItemDO extends DeletableDO {
     private Integer discountTotal;
     /**
      * 最终总金额，单位：分。
-     *
+     * <p>
      * 注意，presentPrice * quantity 不一定等于 presentTotal 。
      * 因为，存在无法整除的情况。
      * 举个例子，presentPrice = 8.33 ，quantity = 3 的情况，presentTotal 有可能是 24.99 ，也可能是 25 。
@@ -113,7 +128,7 @@ public class OrderItemDO extends DeletableDO {
 
     /**
      * 是否退货
-     *
+     * <p>
      * - 1、没有
      * - 2、换货
      * - 3、退货
@@ -122,7 +137,7 @@ public class OrderItemDO extends DeletableDO {
     private Integer hasReturnExchange;
     /**
      * 发货方式
-     *
+     * <p>
      * - 1 未选择
      * - 2 在线下单
      * - 3 自己联系快递
@@ -131,7 +146,7 @@ public class OrderItemDO extends DeletableDO {
     private Integer deliveryType;
     /**
      * 状态
-     *
+     * <p>
      * - 1、待付款
      * - 2、待发货
      * - 3、已发货

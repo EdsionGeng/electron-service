@@ -25,7 +25,7 @@ public class OrderReturnController {
     private DataDictService dataDictService;
 
     @GetMapping("reason")
-    @ApiOperation("原因")
+    @ApiOperation("退货原因列表")
     public CommonResult<List<DataDictBO>> orderReturnReason() {
         return dataDictService.getDataDict(DictKeyConstants.ORDER_RETURN_REASON);
     }

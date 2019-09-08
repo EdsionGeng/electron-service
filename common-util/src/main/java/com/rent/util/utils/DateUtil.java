@@ -2,6 +2,7 @@ package com.rent.util.utils;
 
 import org.springframework.util.Assert;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -122,7 +123,7 @@ public class DateUtil {
      * 判断当前时间，是否在该时间范围内
      *
      * @param beginTime 开始时间
-     * @param endTime 结束时间
+     * @param endTime   结束时间
      * @return 是否在
      */
     public static boolean isBetween(Date beginTime, Date endTime) {
@@ -131,6 +132,26 @@ public class DateUtil {
         Date now = new Date();
         return beginTime.getTime() <= now.getTime()
                 && now.getTime() <= endTime.getTime();
+    }
+
+    private static long diffTwoDate(Date startTime, Date endTime) {
+        long day = 0;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        try {
+            if (startTime != null) {
+                String begin = sdf.format(startTime);
+                startTime = sdf.parse(begin);
+            }
+            if (endTime != null) {
+                String end = sdf.format(endTime);
+                endTime = sdf.parse(end);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        day = (endTime.getTime() - startTime.getTime()) / (24 * 60 * 60 * 1000);
+        return day;
+
     }
 
 }

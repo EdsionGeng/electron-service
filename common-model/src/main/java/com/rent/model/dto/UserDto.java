@@ -3,7 +3,6 @@ package com.rent.model.dto;
 import lombok.Data;
 
 
-
 @Data
 
 public class UserDto {
@@ -14,7 +13,6 @@ public class UserDto {
     private Boolean isCertified;
 
     private String faceImage;
-
 
 
 }

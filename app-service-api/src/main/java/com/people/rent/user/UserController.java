@@ -60,17 +60,17 @@ public class UserController {
                 if (aliUserInfo != null) {
                     UserDto newUser = new UserDto();
                     newUser.setAlipayUserId(alipayUserId);
-                    newUser.setNickname(aliUserInfo.getNickName());
+                    newUser.setUserNickname(aliUserInfo.getNickName());
 
-                    newUser.setIsCertified(aliUserInfo.getIsCertified().equals("T")?Boolean.TRUE : Boolean.FALSE);
-                    newUser.setFaceImage(aliUserInfo.getAvatar());
+                    newUser.setIsCertified(aliUserInfo.getIsCertified().equals("T") ? Boolean.TRUE : Boolean.FALSE);
+                    newUser.setUserAvatar(aliUserInfo.getAvatar());
                     userService.registUser(newUser);
                     return CommonResult.success(newUser);
                 }
             }
         } else {
             System.out.println("获取access_token - 调用失败");
-            return null;
+            return CommonResult.error(500, "支付宝授权失败");
         }
         return null;
     }
@@ -94,7 +94,7 @@ public class UserController {
     }
 
     // 获取支付宝用户信息
-    private AlipayUserInfoShareResponse getAliUserInfo (String accessToken) throws Exception {
+    private AlipayUserInfoShareResponse getAliUserInfo(String accessToken) throws Exception {
         AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do",
                 alipayConfig.getAliPayAppId(),                    // 1. 填入appid
                 alipayConfig.getAliPayAppPrivateKey(),            // 2. 填入私钥

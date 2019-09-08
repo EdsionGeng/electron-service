@@ -15,5 +15,5 @@ public class UserBO {
 
     private String faceImage;
 
-
+    private Integer zhimaScore;
 }

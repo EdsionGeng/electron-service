@@ -3,7 +3,9 @@ package com.people.rent.user;
 
 import com.rent.model.po.User;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserMapper {
 
 

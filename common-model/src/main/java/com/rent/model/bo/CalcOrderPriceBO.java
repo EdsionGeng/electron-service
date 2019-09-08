@@ -3,6 +3,7 @@ package com.rent.model.bo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,14 +23,14 @@ public class CalcOrderPriceBO {
     private Integer couponCardId;
     /**
      * 优惠劵减少的金额
-     *
+     * <p>
      * 1. 若未使用优惠劵，返回 null
      * 2. 该金额，已经分摊到每个 Item 的 discountTotal ，需要注意。
      */
     private Integer couponCardDiscountTotal;
     /**
      * 邮费信息
-     *
+     * <p>
      * TODO 芋艿，暂时未弄
      */
     private Postage postage;
@@ -40,7 +41,7 @@ public class CalcOrderPriceBO {
 
     /**
      * 商品分组
-     *
+     * <p>
      * 多个商品，参加同一个活动，从而形成分组。
      */
     @Data
@@ -54,7 +55,7 @@ public class CalcOrderPriceBO {
         private PromotionActivityBO activity;
         /**
          * 促销减少的金额
-         *
+         * <p>
          * 1. 若未参与促销活动，或不满足促销条件，返回 null
          * 2. 该金额，已经分摊到每个 Item 的 discountTotal ，需要注意。
          */
@@ -84,6 +85,22 @@ public class CalcOrderPriceBO {
          * 购买数量
          */
         private Integer buyQuantity;
+
+        /**
+         * 选择时间Id
+         */
+        private Integer timeId;
+
+        /**
+         * 自定义开始时间
+         */
+        private Date startTime;
+
+        /**
+         * 自定义结束时间
+         */
+        private Date endTime;
+
         /**
          * 优惠活动
          */
@@ -102,7 +119,7 @@ public class CalcOrderPriceBO {
         private Integer presentPrice;
         /**
          * 购买总金额，单位：分
-         *
+         * <p>
          * 用途类似 {@link #presentTotal}
          */
         private Integer buyTotal;
@@ -112,7 +129,7 @@ public class CalcOrderPriceBO {
         private Integer discountTotal;
         /**
          * 最终总金额，单位：分。
-         *
+         * <p>
          * 注意，presentPrice * quantity 不一定等于 presentTotal 。
          * 因为，存在无法整除的情况。
          * 举个例子，presentPrice = 8.33 ，quantity = 3 的情况，presentTotal 有可能是 24.99 ，也可能是 25 。
@@ -135,7 +152,7 @@ public class CalcOrderPriceBO {
         private Integer buyTotal;
         /**
          * 优惠总价
-         *
+         * <p>
          * 注意，满多少元包邮，不算在优惠中。
          */
         private Integer discountTotal;
@@ -145,7 +162,7 @@ public class CalcOrderPriceBO {
         private Integer postageTotal;
         /**
          * 最终价格
-         *
+         * <p>
          * 计算公式 = 总价 - 优惠总价 + 邮费
          */
         private Integer presentTotal;

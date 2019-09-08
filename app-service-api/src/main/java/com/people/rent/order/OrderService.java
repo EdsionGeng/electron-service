@@ -222,9 +222,9 @@ public class OrderService {
         // 遍历 orderItemDOList 数组，将商品信息、商品价格，设置到其中
         for (OrderItemDO orderItemDO : orderItemDOList) {
             ProductSkuDetailBO productSkuDetailBO = productSpuBOMap.get(orderItemDO.getSkuId());
-            if (productSkuDetailBO.getQuantity() <= 0) {
-                return ServiceExceptionUtil.error(OrderErrorCodeEnum.ORDER_INSUFFICIENT_INVENTORY.getCode());
-            }
+//            if (productSkuDetailBO.getQuantity() <= 0) {
+//                return ServiceExceptionUtil.error(OrderErrorCodeEnum.ORDER_INSUFFICIENT_INVENTORY.getCode());
+//            }
             if (productSkuDetailBO.getPrice() <= 0) {
                 return ServiceExceptionUtil.error(OrderErrorCodeEnum.ORDER_GOODS_AMOUNT_INCORRECT.getCode());
             }

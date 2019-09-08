@@ -9,12 +9,12 @@
     </sql>
 
     <resultMap id="PayNotifyTaskResultMap" type="com.rent.model.dataobject.PayNotifyTaskDO">
-        <!--<result property="transaction" column="transaction"-->
-                <!--javaType="cn.iocoder.mall.pay.biz.dataobject.PayNotifyTaskDO$Transaction"-->
-                <!--typeHandler="cn.iocoder.common.framework.mybatis.JSONTypeHandler"/>-->
-        <!--<result property="refund" column="refund"-->
-                <!--javaType="cn.iocoder.mall.pay.biz.dataobject.PayNotifyTaskDO$Refund"-->
-                <!--typeHandler="cn.iocoder.common.framework.mybatis.JSONTypeHandler"/>-->
+        <result property="transaction" column="transaction"
+                javaType="com.rent.model.dataobject.PayNotifyTaskDO$Transaction"
+                typeHandler="com.people.rent.mybatis.JSONTypeHandler"/>
+        <result property="refund" column="refund"
+                javaType="com.rent.model.dataobject.PayNotifyTaskDO$Refund"
+                typeHandler="com.people.rent.mybatis.JSONTypeHandler"/>
     </resultMap>
 
     <insert id="insert" parameterType="com.rent.model.dataobject.PayNotifyTaskDO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
@@ -25,8 +25,8 @@
         ) VALUES (
             #{appId}, #{type},
             #{status}, #{nextNotifyTime}, #{notifyTimes}, #{maxNotifyTimes},
---             #{transaction, typeHandler=cn.iocoder.common.framework.mybatis.JSONTypeHandler},
---             #{refund, typeHandler=cn.iocoder.common.framework.mybatis.JSONTypeHandler}
+             #{transaction, typeHandler=com.people.rent.mybatis.JSONTypeHandler},
+             #{refund, typeHandler=com.people.rent.mybatis.JSONTypeHandler}
         )
     </insert>
 

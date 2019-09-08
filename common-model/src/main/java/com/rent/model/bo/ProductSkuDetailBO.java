@@ -33,10 +33,10 @@ public class ProductSkuDetailBO implements Serializable {
      * 价格，单位：分
      */
     private Integer price;
-    /**
-     * 库存数量
-     */
-    private Integer quantity;
+//    /**
+//     * 库存数量
+//     */
+//    private Integer quantity;
 
     @Data
     @Accessors(chain = true)

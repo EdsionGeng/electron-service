@@ -69,7 +69,7 @@
         WHERE id = #{id} limit 1
     </select>
 
-    <select id="selectListByPage" resultType="PayRefundDO">
+    <select id="selectListByPage" resultType="com.rent.model.dataobject.transaction.PayRefundDO">
         SELECT
         <include refid="FIELDS"/>
         FROM refund

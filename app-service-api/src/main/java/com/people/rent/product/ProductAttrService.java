@@ -12,6 +12,7 @@ import com.rent.model.constant.ProductErrorCodeEnum;
 import com.rent.model.dataobject.product.ProductAttrDO;
 import com.rent.model.dataobject.product.ProductAttrValueDO;
 import com.rent.model.dto.product.ProductAttrPageDTO;
+import com.rent.model.dto.product.ProductAttrUpdateDTO;
 import com.rent.model.dto.product.ProductAttrValueAddDTO;
 import com.rent.model.dto.product.ProductAttrValueUpdateDTO;
 import com.rent.util.utils.ServiceExceptionUtil;

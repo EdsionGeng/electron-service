@@ -7,8 +7,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-
 public class User implements Serializable {
+
+    private Integer id;
 
     private String alipayUserId;
 
@@ -17,6 +18,8 @@ public class User implements Serializable {
     private Boolean isCertified;
 
     private String faceImage;
+
+    private Integer zhimaScore;
 
     private Date registerTime;
 
