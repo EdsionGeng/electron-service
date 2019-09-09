@@ -3,12 +3,14 @@ package com.rent.model.dataobject;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import java.util.List;
 
 /**
  * 商品 ES DO
  */
-//@Document(indexName = "product", type = "spu", shards = 1, replicas = 0)
+@Document(indexName = "product", type = "spu", shards = 1, replicas = 0)
 @Data
 @Accessors(chain = true)
 public class ESProductDO {
@@ -68,10 +70,10 @@ public class ESProductDO {
      * 购买价格，单位：分。
      */
     private Integer buyPrice;
-    /**
-     * 库存数量
-     */
-    private Integer quantity;
+//    /**
+//     * 库存数量
+//     */
+//    private Integer quantity;
 
     // ========== 促销活动相关字段 =========
     // 目前只促销单体商品促销，目前仅限制折扣。

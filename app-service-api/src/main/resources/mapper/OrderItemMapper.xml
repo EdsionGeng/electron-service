@@ -103,7 +103,7 @@
     <!--
         更新 - 根据 id 更新
     -->
-    <update id="updateById" parameterType="OrderDO">
+    <update id="updateById" parameterType="com.rent.model.dataobject.OrderDO">
         UPDATE `order_item`
         <include refid="updateFieldSql"/>
         WHERE id = #{orderItemDO.id}
@@ -133,7 +133,7 @@
     <!--
         获取 - 根据 ids 查询
     -->
-    <select id="selectByIds" resultType="cn.iocoder.mall.order.biz.dataobject.OrderItemDO">
+    <select id="selectByIds" resultType="com.rent.model.dataobject.OrderItemDO">
         SELECT
         <include refid="FIELDS"/>
         FROM order_item

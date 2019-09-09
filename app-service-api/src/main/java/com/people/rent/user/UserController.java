@@ -60,10 +60,10 @@ public class UserController {
                 if (aliUserInfo != null) {
                     UserDto newUser = new UserDto();
                     newUser.setAlipayUserId(alipayUserId);
-                    newUser.setUserNickname(aliUserInfo.getNickName());
+                    newUser.setNickname(aliUserInfo.getNickName());
 
                     newUser.setIsCertified(aliUserInfo.getIsCertified().equals("T") ? Boolean.TRUE : Boolean.FALSE);
-                    newUser.setUserAvatar(aliUserInfo.getAvatar());
+                    newUser.setFaceImage(aliUserInfo.getAvatar());
                     userService.registUser(newUser);
                     return CommonResult.success(newUser);
                 }
