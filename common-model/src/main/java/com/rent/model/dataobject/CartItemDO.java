@@ -20,7 +20,7 @@ public class CartItemDO extends BaseDO {
     private Integer id;
     /**
      * 状态
-     *
+     * <p>
      * 1-正常
      * 2-主动删除
      * 3-下单删除
@@ -61,9 +61,13 @@ public class CartItemDO extends BaseDO {
      */
     private Integer quantity;
 
+    private int timeId;
+
+    private Date startTime;
+
+    private Date endTime;
+
     // TODO 冗余字段
-
-
     // ========= 商品信息 END =========
 
     // ========= 交易信息 BEGIN =========

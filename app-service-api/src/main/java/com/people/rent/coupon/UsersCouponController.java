@@ -1,9 +1,8 @@
-package com.people.rent.promotion;
+package com.people.rent.coupon;
 
 
 import com.people.rent.convert.CouponCardConvert;
 import com.people.rent.convert.CouponTemplateConvert;
-import com.people.rent.coupon.CouponService;
 import com.rent.model.CommonResult;
 import com.rent.model.bo.CouponCardBO;
 import com.rent.model.bo.CouponCardPageBO;
@@ -17,6 +16,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 @Api("优惠劵（码）模块")
 public class UsersCouponController {
 
+    @Autowired
     private CouponService couponService;
 
     // ========== 优惠劵（码）模板 ==========
@@ -47,7 +48,7 @@ public class UsersCouponController {
             @ApiImplicitParam(name = "pageSize", value = "每页条数", required = true, example = "10"),
     })
     public CommonResult<UsersCouponCardPageVO> cardPage(@RequestParam(value = "status", required = false) Integer status,
-                                                        @RequestParam(value = "pageNo", defaultValue = "0") Integer pageNo,
+                                                        @RequestParam(value = "pageNo", defaultValue = "1") Integer pageNo,
                                                         @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         CouponCardPageBO result = couponService.getCouponCardPage(new CouponCardPageDTO()
                 .setStatus(status).setUserId(null)

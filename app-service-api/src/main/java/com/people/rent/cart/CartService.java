@@ -22,10 +22,8 @@ public class CartService {
     private ProductSpuService productSpuService;
     @Autowired
     private CartMapper cartMapper;
-
     @Autowired
     private PromotionActivityService promotionActivityService;
-
     @Autowired
     private CouponService couponService;
 
@@ -45,12 +43,12 @@ public class CartService {
             return updateQuantity0(item, sku, quantity);
         }
         // 不存在，则进行插入
-        return add0(userId, sku, quantity);
+        return add0(userId, sku, quantity, timeId, startTime, endTime);
     }
 
-    private Boolean add0(Integer userId, ProductSkuBO sku, Integer quantity) {
+    private Boolean add0(Integer userId, ProductSkuBO sku, Integer quantity, Integer timeId, Date startTime, Date endTime) {
 //        // 校验库存
-//        if (quantity > sku.getQuantity()) {
+//        if(quantity > sku.getQuantity()) {
 //            throw ServiceExceptionUtil.exception(OrderErrorCodeEnum.CARD_ITEM_SKU_NOT_FOUND.getCode());
 //        }
         // 创建 CartItemDO 对象，并进行保存。
@@ -60,7 +58,9 @@ public class CartService {
                 // 买家信息
                 .setUserId(userId)
                 // 商品信息
-                .setSpuId(sku.getSpuId()).setSkuId(sku.getId()).setQuantity(quantity);
+                .setSpuId(sku.getSpuId()).setSkuId(sku.getId()).setQuantity(quantity)
+                //时间选择
+                .setTimeId(timeId).setStartTime(startTime).setEndTime(endTime);
         item.setCreateTime(new Date());
         cartMapper.insert(item);
         // 返回成功

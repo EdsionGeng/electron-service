@@ -28,7 +28,7 @@ public class PromotionActivityBO implements Serializable {
     /**
      * 活动状态
      *
-     * 参见 {@link cn.iocoder.mall.promotion.api.constant.PromotionActivityStatusEnum} 枚举
+     * 参见 {@link com.rent.model.constant.PromotionActivityStatusEnum} 枚举
      */
     private Integer status;
     /**

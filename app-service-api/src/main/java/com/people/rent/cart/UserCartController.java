@@ -13,6 +13,7 @@ import com.rent.model.dto.CalcOrderPriceDTO;
 import com.rent.model.vo.UsersCalcSkuPriceVO;
 import com.rent.model.vo.UsersCartDetailVO;
 import com.rent.model.vo.UsersOrderConfirmCreateVO;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,7 @@ public class UserCartController {
     }
 
     @GetMapping("/list")
+
     public CommonResult<UsersCartDetailVO> list() { // TODO 芋艿，先暂用这个 VO 。等促销活动出来后，做调整
         return getCartDetail();
     }

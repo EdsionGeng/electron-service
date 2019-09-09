@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("product_recommend")
+@RequestMapping("/user/product_recommend")
 @Api("商品推荐模块")
 public class UsersProductRecommendController {
 
