@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.people.rent.banner.BannerMapper">
+
+    <sql id="FIELDS">
+        id,`desc`,days
+    </sql>
+
+    <select id="selectTimeChooseList" parameterType="Integer" resultType="com.rent.model.dataobject.TimeChooseDO">
+        SELECT
+        <include refid="FIELDS"/>
+        FROM time_choose
+        <where>
+            deleted = 0
+        </where>
+    </select>
+
+
+
+</mapper>
