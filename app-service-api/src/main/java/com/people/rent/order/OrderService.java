@@ -348,7 +348,7 @@ public class OrderService {
         return payTransactionService.createTransaction(
                 new PayTransactionCreateDTO()
                         .setCreateIp(ip)
-                        .setAppId(PayAppId.APP_ID_SHOP_ORDER)
+                        .setAppId(PayAppId.APP_ALIPAY_ID)
                         .setOrderId(order.getId().toString())
                         .setExpireTime(expireTime)
                         .setPrice(order.getPresentPrice())

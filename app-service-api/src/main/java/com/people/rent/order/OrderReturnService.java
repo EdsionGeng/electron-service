@@ -209,7 +209,7 @@ public class OrderReturnService {
 
         CommonResult payResult = payRefundService.submitRefund(
                 new PayRefundSubmitDTO()
-                        .setAppId(PayAppId.APP_ID_SHOP_ORDER)
+                        .setAppId(PayAppId.APP_ALIPAY_ID)
                         .setOrderId(String.valueOf(orderReturnDO.getOrderId()))
                         .setPrice(orderReturnDO.getRefundPrice())
                         .setOrderDescription(orderDescription)

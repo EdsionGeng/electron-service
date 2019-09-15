@@ -26,7 +26,7 @@ public class UsersCouponTemplateVO {
     private Integer priceAvailable;
     @ApiModelProperty(value = "可用范围的类型", required = true, example = "参见 CouponTemplateRangeTypeEnum 枚举")
     private Integer rangeType;
-    @ApiModelProperty(value = "指定商品 / 分类列表，使用逗号分隔商品编号", example = "参见 CouponTemplateRangeTypeEnum 枚举")
+    @ApiModelProperty(value = "指定商品 / 分类列表，使用逗号分隔商品编号", example = "参见 RangeTypeEnum 枚举")
     private String rangeValues;
     @ApiModelProperty(value = "生效日期类型", example = "参见 CouponTemplateDateTypeEnum 枚举")
     private Integer dateType;

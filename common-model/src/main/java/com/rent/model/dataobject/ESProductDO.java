@@ -3,14 +3,14 @@ package com.rent.model.dataobject;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.data.elasticsearch.annotations.Document;
+//import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.List;
 
 /**
  * 商品 ES DO
  */
-@Document(indexName = "product", type = "spu", shards = 1, replicas = 0)
+//@Document(indexName = "product", type = "spu", shards = 1, replicas = 0)
 @Data
 @Accessors(chain = true)
 public class ESProductDO {

@@ -55,7 +55,7 @@ public class PayTransactionBO implements Serializable {
     /**
      * 支付成功的支付渠道
      *
-     * @see cn.iocoder.mall.pay.api.constant.PayChannelEnum
+     * @see com.rent.model.constant.PayChannelEnum
      */
     private Integer payChannel;
     /**

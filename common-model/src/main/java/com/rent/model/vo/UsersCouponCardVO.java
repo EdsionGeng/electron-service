@@ -11,7 +11,8 @@ import java.util.Date;
  */
 @Data
 @Accessors(chain = true)
-public class UsersCouponCardVO {
+public class
+UsersCouponCardVO {
 
     // ========== 基本信息 BEGIN ==========
     @ApiModelProperty(value = "优惠劵编号", required = true, example = "1")

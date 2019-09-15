@@ -33,7 +33,7 @@ public class PayTransactionController {
     private PayTransactionService payTransactionService;
 
     @GetMapping("/get")
-    @ApiOperation("获得支付交易")
+    @ApiOperation("检查支付交易是否成功")
     public CommonResult<PayTransactionBO> get(PayTransactionGetDTO payTransactionGetDTO) {
         payTransactionGetDTO.setUserId(null);
         return CommonResult.success(payTransactionService.getTransaction(payTransactionGetDTO));

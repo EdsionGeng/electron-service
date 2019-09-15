@@ -9,8 +9,23 @@ package com.rent.model.constant;
 public class PayAppId {
 
     /**
-     * 电商
+     * 支付宝
      */
-    public static final String APP_ID_SHOP_ORDER = "POd4RC6a";
+    public static final String APP_ALIPAY_ID = "rent0001";
+    /**
+     * 微信小程序
+     */
+
+    public static final String APP_WECHAT_ID="rent0002";
+
+    /**
+     * PC商城
+     */
+    public static final String APP_PC_ID="rent0003";
+
+    /**
+     * APP
+     */
+    public static final String APP_APP_ID="rent0003";
 
 }

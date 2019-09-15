@@ -8,10 +8,10 @@ import java.util.Arrays;
  */
 public enum PayChannelEnum implements IntArrayValuable {
 
-    WEIXIN_APP(100, "wx", "微信 App 支付"),
-    WEIXIN_PUB(101, "wxjs", "微信 JS API 支付"),
+    WEIXIN_APP(200, "wx", "微信 App 支付"),
+    WEIXIN_PUB(201, "wxjs", "微信 JS API 支付"),
 
-    ALIPAY(200, "alipay", "支付宝 App 支付"),
+    ALIPAY(100, "alipay", "支付宝 App 支付"),
 
     PINGXX(9999, "ping++", "ping++ 支付"),
     ;

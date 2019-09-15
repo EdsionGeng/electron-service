@@ -27,7 +27,7 @@ import java.util.*;
 import static com.rent.model.CommonResult.success;
 
 @RestController
-public class UserCartController {
+public class CartController {
 
     @Autowired
     private CartService cartService;

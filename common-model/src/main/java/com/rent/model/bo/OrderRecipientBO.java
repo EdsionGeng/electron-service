@@ -5,6 +5,8 @@ import com.rent.model.dataobject.BaseDO;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * 订单收件人信息 order_recipient
  *
@@ -13,7 +15,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class OrderRecipientBO extends BaseDO { // TODO FROM 芋艿 TO 小范，不要继承 BaseDO
+public class OrderRecipientBO implements Serializable { // TODO FROM 芋艿 TO 小范，不要继承 BaseDO
 
     /**
      * 编号
