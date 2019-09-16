@@ -62,7 +62,7 @@ public class OrderController {
     }
 
     @PostMapping("create_order")
-    @ApiOperation("创建订单")
+    @ApiOperation("直接创建订单")
     public CommonResult<OrderCreateBO> createOrder(@RequestBody @Validated OrderCreatePO orderCreatePO,
                                                    HttpServletRequest request) {
         Integer userId = Integer.parseInt(request.getHeader(""));
@@ -72,7 +72,7 @@ public class OrderController {
     }
 
     @PostMapping("create_order_from_cart")
-    @ApiOperation("创建订单购物车")
+    @ApiOperation("购物车创建订单")
     public CommonResult<OrderCreateBO> createOrderFromCart(@RequestParam("userAddressId") Integer userAddressId,
                                                            @RequestParam(value = "couponCardId", required = false) Integer couponCardId,
                                                            @RequestParam(value = "remark", required = false) String remark,
@@ -99,7 +99,7 @@ public class OrderController {
     }
 
     @GetMapping("confirm_create_order")
-    @ApiOperation("确认创建订单")
+    @ApiOperation("确认创建订单前计算价格")
     public CommonResult<UsersOrderConfirmCreateVO> getConfirmCreateOrder(@RequestParam("skuId") Integer skuId,
                                                                          @RequestParam("quantity") Integer quantity,
                                                                          @RequestParam(value = "timeId", required = false) Integer timeId,
