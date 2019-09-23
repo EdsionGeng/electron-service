@@ -47,8 +47,8 @@ public class OrderCommentService {
         List<OrderCommentPageBO.OrderCommentItem> orderCommentItemList=orderCommentDOList.stream()
                 .flatMap(x->orderCommentReplyDOList.stream()
                         .filter(y->x.getId()==y.getCommentId())
-                        .map(y->new OrderCommentPageBO.OrderCommentItem(x.getId(),x.getUserAvatar(),x.getUserNickName(),x.getStar(),
-                                x.getCommentContent(),x.getCommentPics(),x.getReplayCount(),x.getLikeCount(),x.getCreateTime(),y.getReplyContent()))
+                        .map(y->new OrderCommentPageBO.OrderCommentItem(x.getId(),x.getAvatar(),x.getNickname(),x.getStar(),
+                                x.getCommentContent(),x.getCommentPics(),x.getReplyCount(),x.getLikeCount(),x.getCreateTime(),y.getReplyContent()))
                 ).collect(Collectors.toList());
         //总数
         int totalCount=orderCommentMapper.selectCommentTotalCountByProductSkuId(orderCommentPageDTO.getProductSkuId());

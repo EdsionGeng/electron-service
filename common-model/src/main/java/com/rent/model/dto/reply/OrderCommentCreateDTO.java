@@ -58,11 +58,11 @@ public class OrderCommentCreateDTO implements Serializable {
     private Integer userId;
 
     @ApiModelProperty(value = "用户头像", required = true)
-    private String userAvatar;
+    private String avatar;
 
     @ApiModelProperty(value = "用户昵称", required = true)
     @NotEmpty(message = "用户昵称不能为空")
-    private String userNickName;
+    private String nickname;
 
     @ApiModelProperty(value = "评价星级", required = true,example = "1-5")
     private Integer star;

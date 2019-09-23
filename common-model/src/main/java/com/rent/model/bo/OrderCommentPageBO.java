@@ -59,12 +59,12 @@ public class OrderCommentPageBO implements Serializable {
         /**
          * 用户头像
          */
-        private String userAvatar;
+        private String avatar;
 
         /**
          * 用户的真实姓名
          */
-        private String userNickName;
+        private String nickname;
 
         /**
          * 评价星

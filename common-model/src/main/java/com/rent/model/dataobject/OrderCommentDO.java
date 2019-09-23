@@ -57,7 +57,7 @@ public class OrderCommentDO extends BaseDO {
     private Integer productSkuPrice;
 
     /**
-     * 商品 sku url
+     * 商品 sku picUrl
      */
     private String productSkuPicUrl;
 
@@ -69,12 +69,12 @@ public class OrderCommentDO extends BaseDO {
     /**
      * 用户头像
      */
-    private String userAvatar;
+    private String avatar;
 
     /**
      * 用户的真实姓名
      */
-    private String userNickName;
+    private String nickname;
 
     /**
      * 评价星
@@ -99,7 +99,7 @@ public class OrderCommentDO extends BaseDO {
     /**
      * 回复条数
      */
-    private Integer replayCount;
+    private Integer replyCount;
 
     /**
      * 点赞数 // TODO FROM 芋艿 TO wtz collect 是收藏的意思，最好换个单词噢。

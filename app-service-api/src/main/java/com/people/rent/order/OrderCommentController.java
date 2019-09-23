@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
  * @time 2019-05-27 20:46
  */
 @RestController
-@RequestMapping(MallConstants.ROOT_PATH_USER + "/order_comment")
+@RequestMapping("users/order_comment")
 @Api("用户评论模块")
 public class OrderCommentController {
 
@@ -64,7 +64,7 @@ public class OrderCommentController {
         return CommonResult.success(orderCommentInfoAndMerchantReplyBO);
     }
 
-    @GetMapping
+    @GetMapping("order_status_reply_page")
     //@RequiresLogin
     @ApiOperation(value = "获取订单评论状态分页")
     public CommonResult<OrderCommentStateInfoPageBO> getOrderCommentStateInfoPage(@Validated OrderCommentStateInfoPageDTO orderCommentStateInfoPageDTO,HttpServletRequest request){
